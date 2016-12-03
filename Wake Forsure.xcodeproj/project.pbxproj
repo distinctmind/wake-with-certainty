@@ -7,16 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */; };
+		EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */; };
+		EA2577551DF38AE2006197A7 /* MakeAlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */; };
 		EAD016F31DEB881500B66ACD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F21DEB881500B66ACD /* AppDelegate.swift */; };
 		EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F41DEB881500B66ACD /* ViewController.swift */; };
 		EAD016F81DEB881600B66ACD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD016F61DEB881600B66ACD /* Main.storyboard */; };
 		EAD016FB1DEB881600B66ACD /* Wake_Forsure.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F91DEB881600B66ACD /* Wake_Forsure.xcdatamodeld */; };
 		EAD016FD1DEB881600B66ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD016FC1DEB881600B66ACD /* Assets.xcassets */; };
 		EAD017001DEB881600B66ACD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD016FE1DEB881600B66ACD /* LaunchScreen.storyboard */; };
-		EAD017081DED1C1100B66ACD /* AlarmClocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD017071DED1C1100B66ACD /* AlarmClocksViewController.swift */; };
+		EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualAlarmsTableViewCell.swift; sourceTree = "<group>"; };
+		EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualAlarmsTableViewController.swift; sourceTree = "<group>"; };
+		EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeAlarmTableViewController.swift; sourceTree = "<group>"; };
 		EAD016EF1DEB881500B66ACD /* Wake Forsure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wake Forsure.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD016F21DEB881500B66ACD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD016F41DEB881500B66ACD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +31,7 @@
 		EAD016FC1DEB881600B66ACD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD016FF1DEB881600B66ACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD017011DEB881600B66ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAD017071DED1C1100B66ACD /* AlarmClocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClocksViewController.swift; sourceTree = "<group>"; };
+		EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,7 @@
 		EAD016E61DEB881400B66ACD = {
 			isa = PBXGroup;
 			children = (
+				EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */,
 				EAD016F11DEB881500B66ACD /* Wake Forsure */,
 				EAD016F01DEB881500B66ACD /* Products */,
 			);
@@ -60,7 +67,9 @@
 			children = (
 				EAD016F21DEB881500B66ACD /* AppDelegate.swift */,
 				EAD016F41DEB881500B66ACD /* ViewController.swift */,
-				EAD017071DED1C1100B66ACD /* AlarmClocksViewController.swift */,
+				EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */,
+				EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */,
+				EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */,
 				EAD016F61DEB881600B66ACD /* Main.storyboard */,
 				EAD016FC1DEB881600B66ACD /* Assets.xcassets */,
 				EAD016FE1DEB881600B66ACD /* LaunchScreen.storyboard */,
@@ -144,9 +153,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */,
-				EAD017081DED1C1100B66ACD /* AlarmClocksViewController.swift in Sources */,
+				EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */,
+				EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */,
 				EAD016F31DEB881500B66ACD /* AppDelegate.swift in Sources */,
+				EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */,
 				EAD016FB1DEB881600B66ACD /* Wake_Forsure.xcdatamodeld in Sources */,
+				EA2577551DF38AE2006197A7 /* MakeAlarmTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +322,7 @@
 				EAD017061DEB881600B66ACD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
