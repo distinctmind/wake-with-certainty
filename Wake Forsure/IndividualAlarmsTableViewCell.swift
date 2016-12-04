@@ -14,6 +14,7 @@ class IndividualAlarmsTableViewCell: UITableViewCell {
     @IBOutlet weak var timeUntilAlarm: UILabel!
     @IBOutlet weak var alarmTime: UILabel!
     @IBOutlet weak var alarmName: UILabel!
+    @IBOutlet weak var switchAlarmState: UISwitch!
     
     
     override func awakeFromNib() {
