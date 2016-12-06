@@ -15,6 +15,7 @@ class MakeAlarmTableViewController: UITableViewController {
 
     @IBOutlet weak var alarmTimePicker: UIDatePicker!
     @IBOutlet weak var timeUntilAlarmLabel: UILabel!
+    @IBOutlet weak var alarmNameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +25,24 @@ class MakeAlarmTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SaveAlarmDetail" {
-            alarm = Alarm(alarmName: "hello",timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date))
+            alarmNameTextField.resignFirstResponder()
+            alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date))
         }
         
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        alarmNameTextField.resignFirstResponder()
+        return alarmNameTextField.isFirstResponder;
+    }
+
+
 
     
     

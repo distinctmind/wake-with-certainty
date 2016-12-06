@@ -8,9 +8,5 @@
 
 import Foundation
 
-let alarmsData = [
-    
-    Alarm(alarmName:"Wake Up", timeUntilAlarm:"1h 24m", alarmTime: "8:05PM"),
-    Alarm(alarmName:"Rise", timeUntilAlarm:"0h 12m", alarmTime: "5:00AM"),
-    Alarm(alarmName:"Alarm", timeUntilAlarm:"10h 50m", alarmTime: "10:15AM")]
+let alarmsData = [Alarm]()
     
