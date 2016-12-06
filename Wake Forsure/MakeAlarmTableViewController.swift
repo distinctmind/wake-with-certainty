@@ -10,6 +10,8 @@ import UIKit
 import Foundation
 
 class MakeAlarmTableViewController: UITableViewController {
+    
+    var alarm:Alarm?
 
     @IBOutlet weak var alarmTimePicker: UIDatePicker!
     @IBOutlet weak var timeUntilAlarmLabel: UILabel!
@@ -23,9 +25,31 @@ class MakeAlarmTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "SaveAlarmDetail" {
+            alarm = Alarm(alarmName: "hello",timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date))
+        }
+        
+    }
+
+    
+    
     @IBAction func alarmTimeAction(_ sender: Any) {
         
         timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+        
+    }
+    
+    func getAlarmTime(alarmTime: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        
+        return dateFormatter.string(from: alarmTime as Date)
+        
         
     }
     
@@ -36,11 +60,8 @@ class MakeAlarmTableViewController: UITableViewController {
         if (userDate < 0) {
             timeUntilAlarmGoesOff = convertTime(userTime: userDate, forwards: false)
         } else if (userDate > 0 && userDate < 60) {
-            if (userDate < 30) {
-                timeUntilAlarmGoesOff = "0h 0m"
-            } else {
+            
                 timeUntilAlarmGoesOff = "0h 1m"
-            }
             
         } else if (userDate >= 60 && userDate < 3600) {
             timeUntilAlarmGoesOff = "0h " + String(lround(userDate/60)) + "m"
@@ -94,7 +115,7 @@ class MakeAlarmTableViewController: UITableViewController {
         }
         return finalString
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

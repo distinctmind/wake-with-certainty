@@ -17,6 +17,8 @@
 		EAD016FD1DEB881600B66ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD016FC1DEB881600B66ACD /* Assets.xcassets */; };
 		EAD017001DEB881600B66ACD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD016FE1DEB881600B66ACD /* LaunchScreen.storyboard */; };
 		EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */; };
+		EADD63A11DF5BAD80096F918 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD63A01DF5BAD80096F918 /* Alarm.swift */; };
+		EADD63A31DF5C0900096F918 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD63A21DF5C0900096F918 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		EAD016FF1DEB881600B66ACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD017011DEB881600B66ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
+		EADD63A01DF5BAD80096F918 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		EADD63A21DF5C0900096F918 /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +72,11 @@
 				EAD016F21DEB881500B66ACD /* AppDelegate.swift */,
 				EAD016F41DEB881500B66ACD /* ViewController.swift */,
 				EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */,
-				EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */,
 				EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */,
+				EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */,
 				EAD016F61DEB881600B66ACD /* Main.storyboard */,
+				EADD63A01DF5BAD80096F918 /* Alarm.swift */,
+				EADD63A21DF5C0900096F918 /* SampleData.swift */,
 				EAD016FC1DEB881600B66ACD /* Assets.xcassets */,
 				EAD016FE1DEB881600B66ACD /* LaunchScreen.storyboard */,
 				EAD017011DEB881600B66ACD /* Info.plist */,
@@ -155,9 +161,11 @@
 				EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */,
 				EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */,
 				EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */,
+				EADD63A11DF5BAD80096F918 /* Alarm.swift in Sources */,
 				EAD016F31DEB881500B66ACD /* AppDelegate.swift in Sources */,
 				EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */,
 				EAD016FB1DEB881600B66ACD /* Wake_Forsure.xcdatamodeld in Sources */,
+				EADD63A31DF5C0900096F918 /* SampleData.swift in Sources */,
 				EA2577551DF38AE2006197A7 /* MakeAlarmTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

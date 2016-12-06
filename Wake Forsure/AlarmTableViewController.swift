@@ -8,8 +8,12 @@
 
 import UIKit
 
-class AlarmTableViewController: UITableViewController {
 
+class AlarmTableViewController: UITableViewController {
+    
+    var alarms:[Alarm] = alarmsData
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,10 +40,25 @@ class AlarmTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func cancelToPlayersViewController(segue:UIStoryboardSegue) {
+    @IBAction func cancelToAlarmTableViewController(segue:UIStoryboardSegue) {
     }
     
-    @IBAction func savePlayerDetail(segue:UIStoryboardSegue) {
+    @IBAction func saveAlarmDetail(segue:UIStoryboardSegue) {
+        if let makeAlarmTableViewController = segue.source as? MakeAlarmTableViewController {
+            
+            print("yoyooo")
+            //add the new alarm to the alarm array
+            if let alarm = makeAlarmTableViewController.alarm {
+                alarms.append(alarm)
+                
+                //update the tableView
+                let indexPath = NSIndexPath(row: alarms.count-1, section: 0)
+                tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
+                //tableView.reloadData()
+                //tableView.reloadRows(at: [indexPath as IndexPath], with: .automatic)
+                print("yoyooo")
+            } 
+        }
     }
 
 
@@ -47,23 +66,28 @@ class AlarmTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return alarms.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualAlarms", for: indexPath) as! IndividualAlarmsTableViewCell
 
         // Configure the cell...
+        
+        let alarm = alarms[indexPath.row] as Alarm
+        cell.alarmName.text = alarm.alarmName
+        cell.alarmTime.text = alarm.alarmTime
+        cell.timeUntilAlarm.text = alarm.timeUntilAlarm
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
