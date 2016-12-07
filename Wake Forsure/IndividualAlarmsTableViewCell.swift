@@ -27,5 +27,12 @@ class IndividualAlarmsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func switchToggle(_ sender: Any) {
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
+    }
+    
+    
 
 }

@@ -12,7 +12,6 @@ import UIKit
 class AlarmTableViewController: UITableViewController {
     
     var alarms:[Alarm] = alarmsData
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +21,11 @@ class AlarmTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         var downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
         downSwipe.direction = .down
         view.addGestureRecognizer(downSwipe)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(shouldReload), name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
 
     }
 
@@ -46,7 +46,6 @@ class AlarmTableViewController: UITableViewController {
     @IBAction func saveAlarmDetail(segue:UIStoryboardSegue) {
         if let makeAlarmTableViewController = segue.source as? MakeAlarmTableViewController {
             
-            print("yoyooo")
             //add the new alarm to the alarm array
             if let alarm = makeAlarmTableViewController.alarm {
                 alarms.append(alarm)
@@ -56,7 +55,6 @@ class AlarmTableViewController: UITableViewController {
                 tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
                 //tableView.reloadData()
                 //tableView.reloadRows(at: [indexPath as IndexPath], with: .automatic)
-                print("yoyooo")
             } 
         }
     }
@@ -76,17 +74,38 @@ class AlarmTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualAlarms", for: indexPath) as! IndividualAlarmsTableViewCell
-
+        print("switch state is not reached yet")
+        
+        if (cell.switchAlarmState.isOn) {
+            print("switch state is good")
+            cell.contentView.backgroundColor = UIColor.green
+            print("color is set good")
+        } else {
+            cell.contentView.backgroundColor = UIColor.white
+        }
+        
+        
+        /*
+        if let theSwitch = IndividualAlarmsTableViewCell.switchAlarmState as? UISwitch {
+            
+        }
+         */
+        
         // Configure the cell...
         
         let alarm = alarms[indexPath.row] as Alarm
         cell.alarmName.text = alarm.alarmName
         cell.alarmTime.text = alarm.alarmTime
         cell.timeUntilAlarm.text = alarm.timeUntilAlarm
-
         return cell
     }
+    
+    func shouldReload() {
+        self.tableView.reloadData()
+    }
+    
     
 
     /*

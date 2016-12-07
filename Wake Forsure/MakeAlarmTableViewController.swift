@@ -17,6 +17,7 @@ class MakeAlarmTableViewController: UITableViewController {
     @IBOutlet weak var timeUntilAlarmLabel: UILabel!
     @IBOutlet weak var alarmNameTextField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,12 +27,21 @@ class MakeAlarmTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        var touchScreen = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        touchScreen.numberOfTapsRequired = 1
+        view.addGestureRecognizer(touchScreen)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SaveAlarmDetail" {
+            
             alarmNameTextField.resignFirstResponder()
+            
+            if (alarmNameTextField.text == "") {
+                alarmNameTextField.text = "Alarm"
+            }
             alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date))
         }
         
@@ -41,11 +51,15 @@ class MakeAlarmTableViewController: UITableViewController {
         alarmNameTextField.resignFirstResponder()
         return alarmNameTextField.isFirstResponder;
     }
-
-
-
     
-    
+    func handleTap(sender: UISwipeGestureRecognizer) {
+        
+        if (sender.state == .ended) {
+            alarmNameTextField.resignFirstResponder()
+        }
+    }
+
+
     @IBAction func alarmTimeAction(_ sender: Any) {
         
         timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)

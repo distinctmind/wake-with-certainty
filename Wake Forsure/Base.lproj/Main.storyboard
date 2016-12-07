@@ -75,6 +75,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-kt-wax">
                                             <rect key="frame" x="36" y="30" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchToggle:" destination="XQB-Vs-Kna" eventType="valueChanged" id="7c2-Fe-2a3"/>
+                                            </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bz-eD-woH">
                                             <rect key="frame" x="40" y="8" width="247" height="21"/>
@@ -146,18 +149,9 @@
                                         <rect key="frame" x="0.0" y="35" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="upd-Gc-sNY" id="eDj-m9-xDP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="299"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SeQ-L9-P7m">
-                                                    <rect key="frame" x="22" y="55" width="276" height="30"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="7Tq-mX-36R" id="gub-A0-foA"/>
-                                                    </connections>
-                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzf-M4-1v7">
                                                     <rect key="frame" x="22" y="263" width="276" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
@@ -173,18 +167,27 @@
                                                         <action selector="alarmTimeAction:" destination="7Tq-mX-36R" eventType="valueChanged" id="EzT-dR-5jm"/>
                                                     </connections>
                                                 </datePicker>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SeQ-L9-P7m">
+                                                    <rect key="frame" x="10" y="55" width="300" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="7Tq-mX-36R" id="gub-A0-foA"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="O3f-jq-JZH" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="14" id="1Cb-08-bSZ"/>
+                                                <constraint firstItem="SeQ-L9-P7m" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="2" id="7W4-aO-mls"/>
                                                 <constraint firstItem="O3f-jq-JZH" firstAttribute="top" secondItem="eDj-m9-xDP" secondAttribute="topMargin" constant="85" id="ABW-vM-eIi"/>
                                                 <constraint firstItem="mzf-M4-1v7" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="14" id="E59-du-B15"/>
                                                 <constraint firstItem="SeQ-L9-P7m" firstAttribute="top" secondItem="eDj-m9-xDP" secondAttribute="topMargin" constant="47" id="JPy-cv-nc5"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="O3f-jq-JZH" secondAttribute="trailing" constant="14" id="K7U-s7-4n8"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mzf-M4-1v7" secondAttribute="bottom" constant="7.5" id="KS4-zp-xe4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SeQ-L9-P7m" secondAttribute="trailing" constant="2" id="M1q-QX-Ngv"/>
                                                 <constraint firstItem="mzf-M4-1v7" firstAttribute="top" secondItem="O3f-jq-JZH" secondAttribute="bottom" constant="17" id="fCf-mv-T8j"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SeQ-L9-P7m" secondAttribute="trailing" constant="14" id="hVg-SI-uIt"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mzf-M4-1v7" secondAttribute="trailing" constant="14" id="jAL-tG-dWl"/>
-                                                <constraint firstItem="SeQ-L9-P7m" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="14" id="lnr-DL-d3p"/>
                                                 <constraint firstItem="O3f-jq-JZH" firstAttribute="top" secondItem="SeQ-L9-P7m" secondAttribute="bottom" constant="8" id="qC4-Db-SAA"/>
                                                 <constraint firstAttribute="topMargin" secondItem="mzf-M4-1v7" secondAttribute="top" constant="-255" id="zVo-r6-oaD"/>
                                             </constraints>
@@ -195,7 +198,7 @@
                                         <rect key="frame" x="0.0" y="335" width="320" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vgo-Zs-zwy" id="7Ta-nt-LJm">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="231"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

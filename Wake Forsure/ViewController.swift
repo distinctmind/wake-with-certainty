@@ -40,7 +40,6 @@ class ViewController: UIViewController {
     
     func handleSwipes(sender: UISwipeGestureRecognizer) {
         
-        print("hello")
         if (sender.direction == .up) {
             self.performSegue(withIdentifier: "showAlarmClocks", sender: nil)
         }
