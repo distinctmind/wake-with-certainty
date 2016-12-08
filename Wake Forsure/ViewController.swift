@@ -16,14 +16,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var helloWorldTimer = Timer.scheduledTimer(timeInterval: 01.0, target: self, selector: Selector("changeTime"), userInfo: nil, repeats: true)
-        
         var upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
         upSwipe.direction = .up
         view.addGestureRecognizer(upSwipe)
         
 
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        var helloWorldTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("changeTime"), userInfo: nil, repeats: true)
+        super.viewWillAppear(true)
     }
 
     override func didReceiveMemoryWarning() {

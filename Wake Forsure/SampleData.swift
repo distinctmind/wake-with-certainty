@@ -8,5 +8,5 @@
 
 import Foundation
 
-let alarmsData = [Alarm]()
+var alarmsData = [Alarm]()
     

@@ -17,6 +17,13 @@ class MakeAlarmTableViewController: UITableViewController {
     @IBOutlet weak var timeUntilAlarmLabel: UILabel!
     @IBOutlet weak var alarmNameTextField: UITextField!
     
+    var alarmArray = [Alarm]()
+
+    var theIndexPathRow: Int?
+    var editingCell = false
+    
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +40,40 @@ class MakeAlarmTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if editingCell == true {
+            alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
+            alarmNameTextField.text = alarmArray[(theIndexPathRow)!].alarmName
+        }
+        timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+    }
+ 
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SaveAlarmDetail" {
             
             alarmNameTextField.resignFirstResponder()
             
+            
             if (alarmNameTextField.text == "") {
                 alarmNameTextField.text = "Alarm"
             }
-            alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date))
-        }
+            alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date), alarmDate: alarmTimePicker.date)
         
+        }         
+        
+        
+    }
+    
+    
+    func convertStringToText(string: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.date(from: string)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -62,7 +91,7 @@ class MakeAlarmTableViewController: UITableViewController {
 
     @IBAction func alarmTimeAction(_ sender: Any) {
         
-        timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+            timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
         
     }
     

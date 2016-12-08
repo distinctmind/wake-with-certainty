@@ -121,13 +121,15 @@
                     <navigationItem key="navigationItem" title="Alarms" id="IhQ-hJ-7dd">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="Jko-HT-kRV">
                             <connections>
-                                <segue destination="dvj-2n-sOL" kind="presentation" id="7jd-hK-Tn8"/>
+                                <action selector="buttonPressed:" destination="42Q-fh-izk" id="oA1-iA-vl7"/>
+                                <segue destination="dvj-2n-sOL" kind="show" identifier="buttonToShowMakeAlarm" id="AOr-Ty-Dc9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showTime" id="W7t-Js-mhl"/>
+                        <segue destination="dvj-2n-sOL" kind="show" identifier="showAlarmMaking" id="MCR-2r-bzb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bf6-CV-5G7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,7 +215,7 @@
                     <navigationItem key="navigationItem" title="Alarm" id="bAB-td-1g2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GHS-8t-cNM">
                             <connections>
-                                <segue destination="NPa-wl-r6q" kind="unwind" identifier="SaveAlarmDetail" unwindAction="saveAlarmDetailWithSegue:" id="Vaa-e0-bsy"/>
+                                <segue destination="NPa-wl-r6q" kind="unwind" unwindAction="cancelToAlarmTableViewControllerWithSegue:" id="ci0-c1-PeL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="GbE-cd-aHc">
@@ -270,4 +272,7 @@
             <point key="canvasLocation" x="2782.5" y="135.21126760563379"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="AOr-Ty-Dc9"/>
+    </inferredMetricsTieBreakers>
 </document>

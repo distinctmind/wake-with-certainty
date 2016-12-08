@@ -11,7 +11,9 @@ import UIKit
 
 class AlarmTableViewController: UITableViewController {
     
-    var alarms:[Alarm] = alarmsData
+    var theSelectedIndexPath: Int?
+    var cellEdited = false
+    var alarmsData = [Alarm]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class AlarmTableViewController: UITableViewController {
         var downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
         downSwipe.direction = .down
         view.addGestureRecognizer(downSwipe)
+        tableView.allowsSelection = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(shouldReload), name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
 
@@ -44,18 +47,25 @@ class AlarmTableViewController: UITableViewController {
     }
     
     @IBAction func saveAlarmDetail(segue:UIStoryboardSegue) {
+        
         if let makeAlarmTableViewController = segue.source as? MakeAlarmTableViewController {
             
             //add the new alarm to the alarm array
             if let alarm = makeAlarmTableViewController.alarm {
-                alarms.append(alarm)
                 
-                //update the tableView
-                let indexPath = NSIndexPath(row: alarms.count-1, section: 0)
-                tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
-                //tableView.reloadData()
-                //tableView.reloadRows(at: [indexPath as IndexPath], with: .automatic)
-            } 
+                if (cellEdited) {
+                    cellEdited = false
+                    alarmsData[theSelectedIndexPath!] = alarm
+                    tableView.reloadData()
+                    
+                } else {
+                    alarmsData.append(alarm)
+                    let indexPath = NSIndexPath(row: alarmsData.count-1, section: 0)
+                    tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
+                    //update the tableView
+                }
+                
+            }
         }
     }
 
@@ -69,7 +79,7 @@ class AlarmTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return alarms.count
+        return alarmsData.count
     }
 
     
@@ -95,10 +105,11 @@ class AlarmTableViewController: UITableViewController {
         
         // Configure the cell...
         
-        let alarm = alarms[indexPath.row] as Alarm
+        let alarm = alarmsData[indexPath.row] as Alarm
         cell.alarmName.text = alarm.alarmName
         cell.alarmTime.text = alarm.alarmTime
         cell.timeUntilAlarm.text = alarm.timeUntilAlarm
+        cell.setEditing(true, animated: true)
         return cell
     }
     
@@ -106,27 +117,39 @@ class AlarmTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    @IBAction func buttonPressed(_ sender: Any) {
+        if (!cellEdited) {
+            performSegue(withIdentifier: "buttonToShowMakeAlarm", sender: nil)
+        }
+    }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            alarmsData.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        theSelectedIndexPath = indexPath.row
+        cellEdited = true
+        performSegue(withIdentifier: "showAlarmMaking", sender: nil)
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -143,14 +166,25 @@ class AlarmTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showAlarmMaking" {
+            
+            let vc = segue.destination as! UINavigationController
+            let tc = vc.topViewController as! MakeAlarmTableViewController
+            tc.theIndexPathRow = theSelectedIndexPath
+            tc.editingCell = true
+            tc.alarmArray = alarmsData
+        } else if segue.identifier == "buttonToShowMakeAlarm" {
+            
+        }
     }
-    */
+    
 
 }
