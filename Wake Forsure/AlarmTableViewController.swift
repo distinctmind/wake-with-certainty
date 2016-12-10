@@ -13,6 +13,7 @@ class AlarmTableViewController: UITableViewController {
     
     var theSelectedIndexPath: Int?
     var cellEdited = false
+    var valueIsLargest = false
     var alarmsData = [Alarm]()
     
     override func viewDidLoad() {
@@ -46,25 +47,47 @@ class AlarmTableViewController: UITableViewController {
     @IBAction func cancelToAlarmTableViewController(segue:UIStoryboardSegue) {
     }
     
+    
     @IBAction func saveAlarmDetail(segue:UIStoryboardSegue) {
         
+        //This will be used as the index to add the alarm to the array, chronologically!
+        var insertAt = Int()
+       
         if let makeAlarmTableViewController = segue.source as? MakeAlarmTableViewController {
             
-            //add the new alarm to the alarm array
+            //Add the new alarm to the array
             if let alarm = makeAlarmTableViewController.alarm {
                 
+                //If the user clicked on the cell
                 if (cellEdited) {
-                    cellEdited = false
-                    alarmsData[theSelectedIndexPath!] = alarm
-                    tableView.reloadData()
                     
-                } else {
-                    alarmsData.append(alarm)
-                    let indexPath = NSIndexPath(row: alarmsData.count-1, section: 0)
-                    tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
-                    //update the tableView
-                }
+                    cellEdited = false
+                    alarmsData.remove(at: theSelectedIndexPath!)
+                    
+                    insertAt = getAlarmOrder(alarmDate: alarm.alarmDate!)
+                    
+                    //The alarm we are appending is the latest, hence goes in the end of array
+                    if valueIsLargest {
+                        alarmsData.append(alarm)
+                    } else {
+                        alarmsData.insert(alarm, at: insertAt)
+                    }
+                    //Update table view.
+                    tableView.reloadData()
                 
+                //If the user just clicked the plus button
+                } else {
+                    
+                    insertAt = getAlarmOrder(alarmDate: alarm.alarmDate!)
+                    
+                    //We only want to append if array is empty or value is not yet in array
+                    if valueIsLargest || alarmsData.count == 0 {
+                        alarmsData.append(alarm)
+                    } else {
+                        alarmsData.insert(alarm, at: insertAt)
+                    }
+                    tableView.reloadData()
+                }
             }
         }
     }
@@ -123,7 +146,24 @@ class AlarmTableViewController: UITableViewController {
         }
     }
     
-
+    func getAlarmOrder(alarmDate: Date) -> Int {
+        var counter = 0
+        valueIsLargest = false
+        for eachAlarmDate in alarmsData {
+            
+            if alarmDate.compare(eachAlarmDate.alarmDate!) == ComparisonResult.orderedSame {
+                return counter
+            } else if alarmDate.compare(eachAlarmDate.alarmDate!) == ComparisonResult.orderedDescending {
+                counter += 1
+                continue
+            } else if alarmDate.compare(eachAlarmDate.alarmDate!) == ComparisonResult.orderedAscending {
+                return counter
+            }
+            counter += 1
+        }
+        valueIsLargest = true
+        return counter
+    }
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
