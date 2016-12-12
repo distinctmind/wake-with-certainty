@@ -22,8 +22,12 @@ class MakeAlarmTableViewController: UITableViewController {
     var theIndexPathRow: Int?
     var editingCell = false
     
-
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        //LightContent
+        return .lightContent
+        
+    }    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +45,41 @@ class MakeAlarmTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black;
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+
+        
         super.viewWillAppear(true)
+        
+        tableView.estimatedRowHeight = 650.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        
+        alarmNameTextField.backgroundColor = UIColor.black
+        alarmNameTextField.textColor = UIColor.white
+        
+        alarmTimePicker.setValue(UIColor.white, forKey: "textColor")
+        alarmTimePicker.backgroundColor = UIColor.black
+        
+        timeUntilAlarmLabel.backgroundColor = UIColor.black
+        timeUntilAlarmLabel.textColor = UIColor.white
+        
+        //tableView.backgroundColor = UIColor.black
+        
         if editingCell == true {
             alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
             alarmNameTextField.text = alarmArray[(theIndexPathRow)!].alarmName
         }
         timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
     }
- 
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.black
+        //cell.backgroundView?.backgroundColor = UIColor.black
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -66,7 +97,6 @@ class MakeAlarmTableViewController: UITableViewController {
         
         
     }
-    
     
     func convertStringToText(string: String) -> Date? {
         let dateFormatter = DateFormatter()
@@ -88,11 +118,9 @@ class MakeAlarmTableViewController: UITableViewController {
         }
     }
 
-
+    
     @IBAction func alarmTimeAction(_ sender: Any) {
-        
-            timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
-        
+        timeUntilAlarmLabel.text = timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
     }
     
     func getAlarmTime(alarmTime: Date) -> String {
@@ -173,5 +201,6 @@ class MakeAlarmTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
-    }
+}

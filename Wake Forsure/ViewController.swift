@@ -16,15 +16,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.title = "Clock"
         var upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
         upSwipe.direction = .up
         view.addGestureRecognizer(upSwipe)
-        
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         var helloWorldTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("changeTime"), userInfo: nil, repeats: true)
         super.viewWillAppear(true)
     }
@@ -44,8 +43,17 @@ class ViewController: UIViewController {
     func handleSwipes(sender: UISwipeGestureRecognizer) {
         
         if (sender.direction == .up) {
-            self.performSegue(withIdentifier: "showAlarmClocks", sender: nil)
+            let alarmTable = self.storyboard?.instantiateViewController(withIdentifier: "showAlarmClocks") as? AlarmTableViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            navigationController?.pushViewController(alarmTable!, animated: true)
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        //LightContent
+        return .lightContent
+        
     }
 
 }

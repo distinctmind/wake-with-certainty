@@ -14,34 +14,43 @@ class AlarmTableViewController: UITableViewController {
     var theSelectedIndexPath: Int?
     var cellEdited = false
     var valueIsLargest = false
-    var alarmsData = [Alarm]()
+    var theme = "night"
+    var sampleData = SampleData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        var downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
-        downSwipe.direction = .down
-        view.addGestureRecognizer(downSwipe)
-        tableView.allowsSelection = true
         
+        tableView.allowsSelection = true
         NotificationCenter.default.addObserver(self, selector: #selector(shouldReload), name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
 
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+        //tableView.backgroundColor = UIColor.black
+        //self.navigationController?.navigationBar.barStyle = UIBarStyle.black;  // optional
+        self.tableView.separatorStyle = .none
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        super.viewWillAppear(true)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(true)
+        sampleData = SampleData()
+        var alarmsData = sampleData.getArray()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func handleSwipes(sender: UISwipeGestureRecognizer) {
-        if (sender.direction == .down) {
-            self.performSegue(withIdentifier: "showTime", sender: nil)
-        }
     }
     
     @IBAction func cancelToAlarmTableViewController(segue:UIStoryboardSegue) {
@@ -96,12 +105,10 @@ class AlarmTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return alarmsData.count
     }
 
@@ -109,31 +116,46 @@ class AlarmTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualAlarms", for: indexPath) as! IndividualAlarmsTableViewCell
-        print("switch state is not reached yet")
-        
-        if (cell.switchAlarmState.isOn) {
-            print("switch state is good")
-            cell.contentView.backgroundColor = UIColor.green
-            print("color is set good")
+        var alarmStateOn = cell.switchAlarmState.isOn
+        //If the switch is On
+        if (alarmStateOn) {
+            switchColor(itsOn: alarmStateOn, theCell: cell)
         } else {
-            cell.contentView.backgroundColor = UIColor.white
+            switchColor(itsOn: alarmStateOn, theCell: cell)
         }
         
-        
-        /*
-        if let theSwitch = IndividualAlarmsTableViewCell.switchAlarmState as? UISwitch {
-            
-        }
-         */
         
         // Configure the cell...
-        
         let alarm = alarmsData[indexPath.row] as Alarm
         cell.alarmName.text = alarm.alarmName
         cell.alarmTime.text = alarm.alarmTime
         cell.timeUntilAlarm.text = alarm.timeUntilAlarm
         cell.setEditing(true, animated: true)
         return cell
+    }
+    
+    //Switch color of the cell
+    func switchColor(itsOn: Bool, theCell: IndividualAlarmsTableViewCell) {
+        //Currently only one theme.
+        if (theme == "night") {
+            
+            //If the alarm is ON
+            if (itsOn) {
+                //Color is black on green
+                theCell.alarmName.textColor = UIColor.black
+                theCell.alarmTime.textColor = UIColor.black
+                theCell.timeUntilAlarm.textColor = UIColor.black
+                theCell.contentView.backgroundColor = UIColor(red:0.17, green:0.75, blue:0.16, alpha:0.8)
+            
+            //If the alarm is OFF
+            } else {
+                //Color is white on black
+                theCell.alarmName.textColor = UIColor.white
+                theCell.alarmTime.textColor = UIColor.white
+                theCell.timeUntilAlarm.textColor = UIColor.white
+                theCell.contentView.backgroundColor = UIColor.black
+            }
+        }
     }
     
     func shouldReload() {
@@ -216,14 +238,20 @@ class AlarmTableViewController: UITableViewController {
         
         if segue.identifier == "showAlarmMaking" {
             
-            let vc = segue.destination as! UINavigationController
-            let tc = vc.topViewController as! MakeAlarmTableViewController
-            tc.theIndexPathRow = theSelectedIndexPath
-            tc.editingCell = true
-            tc.alarmArray = alarmsData
+            let vc = segue.destination as! MakeAlarmTableViewController
+            vc.theIndexPathRow = theSelectedIndexPath
+            vc.editingCell = true
+            vc.alarmArray = alarmsData
         } else if segue.identifier == "buttonToShowMakeAlarm" {
             
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        //LightContent
+        return .lightContent
+        
     }
     
 

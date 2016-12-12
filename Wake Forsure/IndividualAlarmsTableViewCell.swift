@@ -21,6 +21,7 @@ class IndividualAlarmsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        switchAlarmState.onTintColor = UIColor(red:0.05, green:0.43, blue:0.05, alpha:1.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

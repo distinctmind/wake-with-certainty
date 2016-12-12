@@ -9,4 +9,11 @@
 import Foundation
 
 var alarmsData = [Alarm]()
+
+class SampleData {
     
+    func getArray() -> [Alarm] {
+        return alarmsData
+    }
+    
+}

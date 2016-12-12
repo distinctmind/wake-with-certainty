@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZTP-m1-OKa">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,34 +25,37 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usw-0E-zTa">
                                 <rect key="frame" x="101" y="258" width="118" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="43"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Usw-0E-zTa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3xy-WO-4Ob"/>
                             <constraint firstItem="Usw-0E-zTa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wq1-gh-SbX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6oC-lu-TKj">
+                        <barButtonItem key="backBarButtonItem" title="Clock" id="GDo-9C-JGQ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="timeLabel" destination="Usw-0E-zTa" id="mII-Qw-BCQ"/>
-                        <segue destination="wdy-rb-bSk" kind="show" identifier="showAlarmClocks" id="3GV-T3-Mw4"/>
+                        <segue destination="42Q-fh-izk" kind="show" identifier="showAlarmClocks" id="aBP-ig-FXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+            <point key="canvasLocation" x="3131.25" y="135.21126760563379"/>
         </scene>
-        <!--Alarms-->
+        <!--showAlarmClocks-->
         <scene sceneID="5rG-sR-KJC">
             <objects>
-                <tableViewController id="42Q-fh-izk" customClass="AlarmTableViewController" customModule="Wake_Forsure" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="showAlarmClocks" title="showAlarmClocks" id="42Q-fh-izk" customClass="AlarmTableViewController" customModule="Wake_Forsure" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="38" sectionFooterHeight="28" id="Gx3-Tr-0vo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="IndividualAlarms" rowHeight="90" id="XQB-Vs-Kna" customClass="IndividualAlarmsTableViewCell" customModule="Wake_Forsure" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="38" width="320" height="90"/>
@@ -118,161 +121,147 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Alarms" id="IhQ-hJ-7dd">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Jko-HT-kRV">
+                    <navigationItem key="navigationItem" id="IhQ-hJ-7dd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jko-HT-kRV">
+                            <color key="tintColor" red="0.98456599977520409" green="0.98022806682252173" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="buttonPressed:" destination="42Q-fh-izk" id="oA1-iA-vl7"/>
-                                <segue destination="dvj-2n-sOL" kind="show" identifier="buttonToShowMakeAlarm" id="AOr-Ty-Dc9"/>
+                                <segue destination="ru0-2I-17C" kind="show" identifier="buttonToShowMakeAlarm" id="enS-Sz-UwT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showTime" id="W7t-Js-mhl"/>
-                        <segue destination="dvj-2n-sOL" kind="show" identifier="showAlarmMaking" id="MCR-2r-bzb"/>
+                        <segue destination="ru0-2I-17C" kind="show" identifier="showAlarmMaking" id="jPm-4Z-wX1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bf6-CV-5G7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1923.75" y="135.21126760563379"/>
+            <point key="canvasLocation" x="3918.75" y="135.21126760563379"/>
         </scene>
-        <!--Alarm-->
-        <scene sceneID="fbK-yX-Wyg">
+        <!--Make Alarm-->
+        <scene sceneID="l9g-Ps-wxc">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="7Tq-mX-36R" customClass="MakeAlarmTableViewController" customModule="Wake_Forsure" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="44" sectionHeaderHeight="19" sectionFooterHeight="18" id="Ghw-jN-Keh">
+                <tableViewController id="ru0-2I-17C" customClass="MakeAlarmTableViewController" customModule="Wake_Forsure" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="400" sectionHeaderHeight="28" sectionFooterHeight="28" id="0gm-00-A3q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection id="1t6-JC-jf9">
+                            <tableViewSection id="H8V-gp-nyV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="300" id="upd-Gc-sNY">
-                                        <rect key="frame" x="0.0" y="35" width="320" height="300"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="344" id="G6t-t7-JKA">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="upd-Gc-sNY" id="eDj-m9-xDP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="G6t-t7-JKA" id="v6B-JM-wQd">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzf-M4-1v7">
-                                                    <rect key="frame" x="22" y="263" width="276" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19h 20m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzf-M4-1v7">
+                                                    <rect key="frame" x="22" y="305" width="276" height="20.5"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
+                                                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SeQ-L9-P7m">
+                                                    <rect key="frame" x="22" y="23" width="276" height="30"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="O3f-jq-JZH">
-                                                    <rect key="frame" x="22" y="93" width="276" height="153"/>
+                                                    <rect key="frame" x="22" y="71" width="276" height="216"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="502512689.379094">
                                                         <!--2016-12-04 02:51:29 +0000-->
                                                     </date>
                                                     <connections>
-                                                        <action selector="alarmTimeAction:" destination="7Tq-mX-36R" eventType="valueChanged" id="EzT-dR-5jm"/>
+                                                        <action selector="alarmTimeAction:" destination="ru0-2I-17C" eventType="valueChanged" id="5mb-UL-TnJ"/>
                                                     </connections>
                                                 </datePicker>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SeQ-L9-P7m">
-                                                    <rect key="frame" x="10" y="55" width="300" height="30"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="7Tq-mX-36R" id="gub-A0-foA"/>
-                                                    </connections>
-                                                </textField>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="O3f-jq-JZH" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="14" id="1Cb-08-bSZ"/>
-                                                <constraint firstItem="SeQ-L9-P7m" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="2" id="7W4-aO-mls"/>
-                                                <constraint firstItem="O3f-jq-JZH" firstAttribute="top" secondItem="eDj-m9-xDP" secondAttribute="topMargin" constant="85" id="ABW-vM-eIi"/>
-                                                <constraint firstItem="mzf-M4-1v7" firstAttribute="leading" secondItem="eDj-m9-xDP" secondAttribute="leadingMargin" constant="14" id="E59-du-B15"/>
-                                                <constraint firstItem="SeQ-L9-P7m" firstAttribute="top" secondItem="eDj-m9-xDP" secondAttribute="topMargin" constant="47" id="JPy-cv-nc5"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="O3f-jq-JZH" secondAttribute="trailing" constant="14" id="K7U-s7-4n8"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="mzf-M4-1v7" secondAttribute="bottom" constant="7.5" id="KS4-zp-xe4"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SeQ-L9-P7m" secondAttribute="trailing" constant="2" id="M1q-QX-Ngv"/>
-                                                <constraint firstItem="mzf-M4-1v7" firstAttribute="top" secondItem="O3f-jq-JZH" secondAttribute="bottom" constant="17" id="fCf-mv-T8j"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="mzf-M4-1v7" secondAttribute="trailing" constant="14" id="jAL-tG-dWl"/>
-                                                <constraint firstItem="O3f-jq-JZH" firstAttribute="top" secondItem="SeQ-L9-P7m" secondAttribute="bottom" constant="8" id="qC4-Db-SAA"/>
-                                                <constraint firstAttribute="topMargin" secondItem="mzf-M4-1v7" secondAttribute="top" constant="-255" id="zVo-r6-oaD"/>
+                                                <constraint firstItem="O3f-jq-JZH" firstAttribute="top" secondItem="SeQ-L9-P7m" secondAttribute="bottom" constant="18" id="0bg-8f-avk"/>
+                                                <constraint firstItem="mzf-M4-1v7" firstAttribute="top" secondItem="O3f-jq-JZH" secondAttribute="bottom" constant="18" id="Cn1-bx-sgh"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="SeQ-L9-P7m" secondAttribute="bottom" constant="283" id="I0v-Xo-G4l"/>
+                                                <constraint firstItem="O3f-jq-JZH" firstAttribute="leading" secondItem="v6B-JM-wQd" secondAttribute="leadingMargin" constant="14" id="TdS-OY-EeH"/>
+                                                <constraint firstItem="SeQ-L9-P7m" firstAttribute="top" secondItem="v6B-JM-wQd" secondAttribute="topMargin" constant="15" id="VJj-fG-Xtj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="O3f-jq-JZH" secondAttribute="trailing" constant="14" id="fsi-ZX-Kwe"/>
+                                                <constraint firstItem="SeQ-L9-P7m" firstAttribute="leading" secondItem="v6B-JM-wQd" secondAttribute="leadingMargin" constant="14" id="pWe-49-xcQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SeQ-L9-P7m" secondAttribute="trailing" constant="14" id="sve-0a-Wb1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mzf-M4-1v7" secondAttribute="trailing" constant="14" id="xgp-iZ-bxR"/>
+                                                <constraint firstItem="mzf-M4-1v7" firstAttribute="leading" secondItem="v6B-JM-wQd" secondAttribute="leadingMargin" constant="14" id="zbk-WX-Tl8"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="232" id="vgo-Zs-zwy">
-                                        <rect key="frame" x="0.0" y="335" width="320" height="232"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="344" id="X1V-HB-Mw9">
+                                        <rect key="frame" x="0.0" y="344" width="320" height="344"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vgo-Zs-zwy" id="7Ta-nt-LJm">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="X1V-HB-Mw9" id="AOH-7S-jOO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="7Tq-mX-36R" id="roc-1e-TxM"/>
-                            <outlet property="delegate" destination="7Tq-mX-36R" id="q19-bb-fZV"/>
+                            <outlet property="dataSource" destination="ru0-2I-17C" id="2Sb-G8-PMR"/>
+                            <outlet property="delegate" destination="ru0-2I-17C" id="Cao-hm-pch"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Alarm" id="bAB-td-1g2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GHS-8t-cNM">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="Make Alarm" id="GXi-Mu-htK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="NPr-xx-3Ke">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="NPa-wl-r6q" kind="unwind" unwindAction="cancelToAlarmTableViewControllerWithSegue:" id="ci0-c1-PeL"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="GbE-cd-aHc">
-                            <connections>
-                                <segue destination="NPa-wl-r6q" kind="unwind" identifier="SaveAlarmDetail" unwindAction="saveAlarmDetailWithSegue:" id="BOK-zT-jau"/>
+                                <segue destination="bcp-m6-agV" kind="unwind" identifier="SaveAlarmDetail" unwindAction="saveAlarmDetailWithSegue:" id="MYr-gJ-XAM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="alarmNameTextField" destination="SeQ-L9-P7m" id="syH-sQ-N8K"/>
-                        <outlet property="alarmTimePicker" destination="O3f-jq-JZH" id="CLJ-lZ-nRf"/>
-                        <outlet property="timeUntilAlarmLabel" destination="mzf-M4-1v7" id="aAZ-a1-XRg"/>
+                        <outlet property="alarmNameTextField" destination="SeQ-L9-P7m" id="EV1-XZ-aLQ"/>
+                        <outlet property="alarmTimePicker" destination="O3f-jq-JZH" id="3tq-ae-9gz"/>
+                        <outlet property="timeUntilAlarmLabel" destination="mzf-M4-1v7" id="R9N-pj-aMT"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="csW-mL-OaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="NPa-wl-r6q" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nLv-j8-uPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bcp-m6-agV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3780" y="136.26760563380282"/>
-        </scene>
-        <!--Alarms-->
-        <scene sceneID="AMp-uP-eGB">
-            <objects>
-                <navigationController title="Alarms" automaticallyAdjustsScrollViewInsets="NO" id="wdy-rb-bSk" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ua-J2-HHF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="42Q-fh-izk" kind="relationship" relationship="rootViewController" id="j0R-8u-h7d"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fbg-lM-taM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="926.25" y="135.21126760563379"/>
+            <point key="canvasLocation" x="4822.5" y="135.21126760563379"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="vH6-r5-7ge">
+        <scene sceneID="apo-Ez-XCu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dvj-2n-sOL" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZTP-m1-OKa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cOk-Dw-Qil">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="RTe-XA-vfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="7Tq-mX-36R" kind="relationship" relationship="rootViewController" id="kKT-Vq-yQs"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vrq-X4-CTg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8td-OD-Sku" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3cK-MP-sbR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2782.5" y="135.21126760563379"/>
+            <point key="canvasLocation" x="2177" y="135"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AOr-Ty-Dc9"/>
+        <segue reference="enS-Sz-UwT"/>
     </inferredMetricsTieBreakers>
 </document>
