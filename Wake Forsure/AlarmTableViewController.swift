@@ -14,8 +14,8 @@ class AlarmTableViewController: UITableViewController {
     var theSelectedIndexPath: Int?
     var cellEdited = false
     var valueIsLargest = false
-    var theme = "night"
     var sampleData = SampleData()
+    var userTheme = UserTheme.userThemeInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,11 @@ class AlarmTableViewController: UITableViewController {
         //tableView.backgroundColor = UIColor.black
         //self.navigationController?.navigationBar.barStyle = UIBarStyle.black;  // optional
         self.tableView.separatorStyle = .none
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        
+        if (userTheme.getUserTheme() == "nightTheme") {
+            self.navigationController?.navigationBar.tintColor = UIColor.white;
+        }
+        
         super.viewWillAppear(true)
         
     }
@@ -137,7 +141,7 @@ class AlarmTableViewController: UITableViewController {
     //Switch color of the cell
     func switchColor(itsOn: Bool, theCell: IndividualAlarmsTableViewCell) {
         //Currently only one theme.
-        if (theme == "night") {
+        if (userTheme.getUserTheme() == "nightTheme") {
             
             //If the alarm is ON
             if (itsOn) {
@@ -249,8 +253,11 @@ class AlarmTableViewController: UITableViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        //LightContent
-        return .lightContent
+        if (userTheme.getUserTheme() == "nightTheme") {
+            return .lightContent
+        } else {
+            return .default
+        }
         
     }
     

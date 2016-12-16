@@ -21,13 +21,7 @@ class MakeAlarmTableViewController: UITableViewController {
 
     var theIndexPathRow: Int?
     var editingCell = false
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        //LightContent
-        return .lightContent
-        
-    }    
+    var userTheme = UserTheme.userThemeInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,28 +39,26 @@ class MakeAlarmTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.black;
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
-
-        
         super.viewWillAppear(true)
         
         tableView.estimatedRowHeight = 650.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
-        alarmNameTextField.backgroundColor = UIColor.black
-        alarmNameTextField.textColor = UIColor.white
-        
-        alarmTimePicker.setValue(UIColor.white, forKey: "textColor")
-        alarmTimePicker.backgroundColor = UIColor.black
-        
-        timeUntilAlarmLabel.backgroundColor = UIColor.black
-        timeUntilAlarmLabel.textColor = UIColor.white
-        
-        //tableView.backgroundColor = UIColor.black
+        if (userTheme.getUserTheme() == "nightTheme") {
+            
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.black;
+            self.navigationController?.navigationBar.tintColor = UIColor.white;
+            
+            alarmNameTextField.backgroundColor = UIColor.black
+            alarmNameTextField.textColor = UIColor.white
+            
+            alarmTimePicker.setValue(UIColor.white, forKey: "textColor")
+            alarmTimePicker.backgroundColor = UIColor.black
+            
+            timeUntilAlarmLabel.backgroundColor = UIColor.black
+            timeUntilAlarmLabel.textColor = UIColor.white
+        }
         
         if editingCell == true {
             alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
@@ -76,8 +68,11 @@ class MakeAlarmTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.black
-        //cell.backgroundView?.backgroundColor = UIColor.black
+        if (userTheme.getUserTheme() == "nightTheme") {
+            cell.backgroundColor = UIColor.black
+        } else {
+            cell.backgroundColor = UIColor.white
+        }
     }
     
     
@@ -202,5 +197,12 @@ class MakeAlarmTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        if (userTheme.getUserTheme() == "nightTheme") {
+            return .lightContent
+        } else {
+            return .default
+        }
+    }
 }

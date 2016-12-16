@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var timeLabel: UILabel!
     var dateFormatter = DateFormatter()
+    var userTheme = UserTheme.userThemeInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         var helloWorldTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("changeTime"), userInfo: nil, repeats: true)
+        userTheme.setCurrentUserTheme(userThemeString: "nightTheme")
         super.viewWillAppear(true)
     }
 
@@ -52,7 +54,11 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
         //LightContent
-        return .lightContent
+        if (userTheme.getUserTheme() == "nightTheme") {
+            return .lightContent
+        } else {
+            return .default
+        }
         
     }
 

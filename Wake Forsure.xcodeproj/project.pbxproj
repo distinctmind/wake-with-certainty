@@ -10,6 +10,7 @@
 		EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */; };
 		EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */; };
 		EA2577551DF38AE2006197A7 /* MakeAlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */; };
+		EA488EE21E045F9200AFD160 /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA488EE11E045F9200AFD160 /* UserTheme.swift */; };
 		EAD016F31DEB881500B66ACD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F21DEB881500B66ACD /* AppDelegate.swift */; };
 		EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F41DEB881500B66ACD /* ViewController.swift */; };
 		EAD016F81DEB881600B66ACD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD016F61DEB881600B66ACD /* Main.storyboard */; };
@@ -23,8 +24,9 @@
 
 /* Begin PBXFileReference section */
 		EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualAlarmsTableViewCell.swift; sourceTree = "<group>"; };
-		EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualAlarmsTableViewController.swift; sourceTree = "<group>"; };
+		EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndividualAlarmsTableViewController.swift; path = ../IndividualAlarmsTableViewController.swift; sourceTree = "<group>"; };
 		EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeAlarmTableViewController.swift; sourceTree = "<group>"; };
+		EA488EE11E045F9200AFD160 /* UserTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		EAD016EF1DEB881500B66ACD /* Wake Forsure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wake Forsure.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD016F21DEB881500B66ACD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD016F41DEB881500B66ACD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,10 +51,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA769DB21E0055800084022E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EADD63A01DF5BAD80096F918 /* Alarm.swift */,
+				EADD63A21DF5C0900096F918 /* SampleData.swift */,
+				EA488EE11E045F9200AFD160 /* UserTheme.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		EA769DB31E00559D0084022E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		EA769DB41E0055D50084022E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EAD016F41DEB881500B66ACD /* ViewController.swift */,
+				EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */,
+				EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */,
+				EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		EAD016E61DEB881400B66ACD = {
 			isa = PBXGroup;
 			children = (
-				EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */,
 				EAD016F11DEB881500B66ACD /* Wake Forsure */,
 				EAD016F01DEB881500B66ACD /* Products */,
 			);
@@ -70,13 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				EAD016F21DEB881500B66ACD /* AppDelegate.swift */,
-				EAD016F41DEB881500B66ACD /* ViewController.swift */,
-				EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */,
-				EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */,
-				EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */,
+				EA769DB21E0055800084022E /* Model */,
+				EA769DB31E00559D0084022E /* View */,
+				EA769DB41E0055D50084022E /* Controller */,
 				EAD016F61DEB881600B66ACD /* Main.storyboard */,
-				EADD63A01DF5BAD80096F918 /* Alarm.swift */,
-				EADD63A21DF5C0900096F918 /* SampleData.swift */,
 				EAD016FC1DEB881600B66ACD /* Assets.xcassets */,
 				EAD016FE1DEB881600B66ACD /* LaunchScreen.storyboard */,
 				EAD017011DEB881600B66ACD /* Info.plist */,
@@ -162,6 +189,7 @@
 				EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */,
 				EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */,
 				EADD63A11DF5BAD80096F918 /* Alarm.swift in Sources */,
+				EA488EE21E045F9200AFD160 /* UserTheme.swift in Sources */,
 				EAD016F31DEB881500B66ACD /* AppDelegate.swift in Sources */,
 				EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */,
 				EAD016FB1DEB881600B66ACD /* Wake_Forsure.xcdatamodeld in Sources */,
