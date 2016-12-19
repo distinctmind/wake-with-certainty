@@ -28,6 +28,26 @@ class AlarmTableViewController: UITableViewController {
         
         tableView.allowsSelection = true
         NotificationCenter.default.addObserver(self, selector: #selector(shouldReload), name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
+        
+        if (userTheme.getUserTheme() == "blackTheme") {
+            
+            self.navigationController?.navigationBar.tintColor = UIColor.white;
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.tableView.backgroundColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+
+            
+        } else if (userTheme.getUserTheme() == "whiteTheme") {
+            self.navigationController?.navigationBar.tintColor = UIColor.black;
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.tableView.backgroundColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            UIApplication.shared.statusBarStyle = .default
+
+            
+        }
 
     }
     
@@ -37,9 +57,7 @@ class AlarmTableViewController: UITableViewController {
         //self.navigationController?.navigationBar.barStyle = UIBarStyle.black;  // optional
         self.tableView.separatorStyle = .none
         
-        if (userTheme.getUserTheme() == "nightTheme") {
-            self.navigationController?.navigationBar.tintColor = UIColor.white;
-        }
+        
         
         super.viewWillAppear(true)
         
@@ -140,15 +158,16 @@ class AlarmTableViewController: UITableViewController {
     
     //Switch color of the cell
     func switchColor(itsOn: Bool, theCell: IndividualAlarmsTableViewCell) {
-        //Currently only one theme.
-        if (userTheme.getUserTheme() == "nightTheme") {
+        
+        //Currently two themes.
+        if (userTheme.getUserTheme() == "blackTheme") {
             
             //If the alarm is ON
             if (itsOn) {
                 //Color is black on green
-                theCell.alarmName.textColor = UIColor.black
-                theCell.alarmTime.textColor = UIColor.black
-                theCell.timeUntilAlarm.textColor = UIColor.black
+                theCell.alarmName.textColor = UIColor.white
+                theCell.alarmTime.textColor = UIColor.white
+                theCell.timeUntilAlarm.textColor = UIColor.white
                 theCell.contentView.backgroundColor = UIColor(red:0.17, green:0.75, blue:0.16, alpha:0.8)
             
             //If the alarm is OFF
@@ -158,6 +177,23 @@ class AlarmTableViewController: UITableViewController {
                 theCell.alarmTime.textColor = UIColor.white
                 theCell.timeUntilAlarm.textColor = UIColor.white
                 theCell.contentView.backgroundColor = UIColor.black
+            }
+        } else {
+            //If the alarm is ON
+            if (itsOn) {
+                //Color is black on green
+                theCell.alarmName.textColor = UIColor.black
+                theCell.alarmTime.textColor = UIColor.black
+                theCell.timeUntilAlarm.textColor = UIColor.black
+                theCell.contentView.backgroundColor = UIColor(red:0.17, green:0.75, blue:0.16, alpha:0.8)
+                
+                //If the alarm is OFF
+            } else {
+                //Color is white on black
+                theCell.alarmName.textColor = UIColor.black
+                theCell.alarmTime.textColor = UIColor.black
+                theCell.timeUntilAlarm.textColor = UIColor.black
+                theCell.contentView.backgroundColor = UIColor.white
             }
         }
     }
@@ -216,6 +252,17 @@ class AlarmTableViewController: UITableViewController {
         cellEdited = true
         performSegue(withIdentifier: "showAlarmMaking", sender: nil)
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if (userTheme.getUserTheme() == "whiteTheme") {
+            cell.backgroundColor = UIColor.white
+        } else {
+            cell.backgroundColor = UIColor.black
+        }
+        
+        
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -249,16 +296,6 @@ class AlarmTableViewController: UITableViewController {
         } else if segue.identifier == "buttonToShowMakeAlarm" {
             
         }
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        if (userTheme.getUserTheme() == "nightTheme") {
-            return .lightContent
-        } else {
-            return .default
-        }
-        
     }
     
 

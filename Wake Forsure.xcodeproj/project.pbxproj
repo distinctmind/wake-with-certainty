@@ -10,6 +10,7 @@
 		EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */; };
 		EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */; };
 		EA2577551DF38AE2006197A7 /* MakeAlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */; };
+		EA34B2C31E06CF88007446E5 /* DayNightSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA34B2C21E06CF88007446E5 /* DayNightSwitch.swift */; };
 		EA488EE21E045F9200AFD160 /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA488EE11E045F9200AFD160 /* UserTheme.swift */; };
 		EAD016F31DEB881500B66ACD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F21DEB881500B66ACD /* AppDelegate.swift */; };
 		EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD016F41DEB881500B66ACD /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 		EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualAlarmsTableViewCell.swift; sourceTree = "<group>"; };
 		EA2577501DF347FC006197A7 /* IndividualAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndividualAlarmsTableViewController.swift; path = ../IndividualAlarmsTableViewController.swift; sourceTree = "<group>"; };
 		EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeAlarmTableViewController.swift; sourceTree = "<group>"; };
+		EA34B2C21E06CF88007446E5 /* DayNightSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayNightSwitch.swift; sourceTree = "<group>"; };
 		EA488EE11E045F9200AFD160 /* UserTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		EAD016EF1DEB881500B66ACD /* Wake Forsure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wake Forsure.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD016F21DEB881500B66ACD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				EADD63A01DF5BAD80096F918 /* Alarm.swift */,
 				EADD63A21DF5C0900096F918 /* SampleData.swift */,
 				EA488EE11E045F9200AFD160 /* UserTheme.swift */,
+				EA34B2C21E06CF88007446E5 /* DayNightSwitch.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA34B2C31E06CF88007446E5 /* DayNightSwitch.swift in Sources */,
 				EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */,
 				EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */,
 				EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */,

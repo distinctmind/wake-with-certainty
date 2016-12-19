@@ -13,9 +13,8 @@ class UserTheme {
     private var dayTheme = "whiteTheme"
     private var nightTheme = "blackTheme"
     private var currentUserTheme = "blackTheme"
-    
     static let userThemeInstance = UserTheme()
-    
+
     func getUserTheme() -> String {
         return currentUserTheme
     }

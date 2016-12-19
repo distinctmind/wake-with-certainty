@@ -201,7 +201,7 @@
                                                 <constraint firstItem="mzf-M4-1v7" firstAttribute="leading" secondItem="v6B-JM-wQd" secondAttribute="leadingMargin" constant="14" id="zbk-WX-Tl8"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.35811516746518224" blue="0.34837280653904734" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="344" id="X1V-HB-Mw9">
                                         <rect key="frame" x="0.0" y="344" width="320" height="344"/>
@@ -247,7 +247,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZTP-m1-OKa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="RTe-XA-vfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="RTe-XA-vfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -36,6 +36,12 @@ class MakeAlarmTableViewController: UITableViewController {
         touchScreen.numberOfTapsRequired = 1
         view.addGestureRecognizer(touchScreen)
         
+        if (userTheme.getUserTheme() == "blackTheme") {
+            self.tableView.backgroundColor = UIColor.black
+        } else {
+            self.tableView.backgroundColor = UIColor.white
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,20 +50,39 @@ class MakeAlarmTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 650.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        if (userTheme.getUserTheme() == "nightTheme") {
+        if (userTheme.getUserTheme() == "blackTheme") {
             
-            self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black;
             self.navigationController?.navigationBar.tintColor = UIColor.white;
-            
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        
             alarmNameTextField.backgroundColor = UIColor.black
             alarmNameTextField.textColor = UIColor.white
+            alarmNameTextField.setValue(UIColor.white, forKeyPath: "_placeholderLabel.textColor")
             
             alarmTimePicker.setValue(UIColor.white, forKey: "textColor")
             alarmTimePicker.backgroundColor = UIColor.black
             
             timeUntilAlarmLabel.backgroundColor = UIColor.black
             timeUntilAlarmLabel.textColor = UIColor.white
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+        } else {
+            
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent;
+            self.navigationController?.navigationBar.tintColor = UIColor.black;
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            
+            alarmNameTextField.backgroundColor = UIColor.white
+            alarmNameTextField.textColor = UIColor.black
+            alarmNameTextField.setValue(UIColor.gray, forKeyPath: "_placeholderLabel.textColor")
+            
+            alarmTimePicker.setValue(UIColor.black, forKey: "textColor")
+            alarmTimePicker.backgroundColor = UIColor.white
+            
+            timeUntilAlarmLabel.backgroundColor = UIColor.white
+            timeUntilAlarmLabel.textColor = UIColor.black
+            UIApplication.shared.statusBarStyle = .default
         }
         
         if editingCell == true {
@@ -68,10 +93,10 @@ class MakeAlarmTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if (userTheme.getUserTheme() == "nightTheme") {
-            cell.backgroundColor = UIColor.black
+        if (userTheme.getUserTheme() == "blackTheme") {
+            cell.contentView.backgroundColor = UIColor.black
         } else {
-            cell.backgroundColor = UIColor.white
+            cell.contentView.backgroundColor = UIColor.white
         }
     }
     
@@ -195,14 +220,5 @@ class MakeAlarmTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        if (userTheme.getUserTheme() == "nightTheme") {
-            return .lightContent
-        } else {
-            return .default
-        }
     }
 }
