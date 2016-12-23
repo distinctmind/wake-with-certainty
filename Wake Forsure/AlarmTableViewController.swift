@@ -15,11 +15,18 @@ class AlarmTableViewController: UITableViewController {
     var cellEdited = false
     var valueIsLargest = false
     var sampleData = SampleData()
-    var userTheme = UserTheme.userThemeInstance
     
+    
+    var userTheme = UserTheme.userThemeInstance
+    var theAlarmState = false
+    
+    var userSwitchStates = UserSwitchStates()
+    var userSwitchesStatesData = [Bool]()
+    var alarmsData = [Alarm]()
+    
+    let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,7 +34,20 @@ class AlarmTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         tableView.allowsSelection = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(shouldReload), name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
+        
+        userSwitchesStatesData = defaults.array(forKey: "savedUserSwitchStates") as? [Bool] ?? [Bool]()
+        userSwitchStates.setArray(theArray: userSwitchesStatesData)
+        
+        //get alarms from NSUserDefaults.
+        if let loadedAlarmsData = defaults.data(forKey: "savedAlarmsData") {
+            
+            if let loadedAlarm = NSKeyedUnarchiver.unarchiveObject(with: loadedAlarmsData) as? [Alarm] {
+                alarmsData = loadedAlarm
+            }
+        }
+
         
         if (userTheme.getUserTheme() == "blackTheme") {
             
@@ -56,9 +76,7 @@ class AlarmTableViewController: UITableViewController {
         //tableView.backgroundColor = UIColor.black
         //self.navigationController?.navigationBar.barStyle = UIBarStyle.black;  // optional
         self.tableView.separatorStyle = .none
-        
-        
-        
+    
         super.viewWillAppear(true)
         
     }
@@ -66,8 +84,8 @@ class AlarmTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(true)
-        sampleData = SampleData()
-        var alarmsData = sampleData.getArray()
+        //sampleData = SampleData()
+        //var alarmsData = sampleData.getArray()
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,6 +122,7 @@ class AlarmTableViewController: UITableViewController {
                         alarmsData.insert(alarm, at: insertAt)
                     }
                     //Update table view.
+                    userSwitchesStatesData[insertAt] = true
                     tableView.reloadData()
                 
                 //If the user just clicked the plus button
@@ -117,8 +136,10 @@ class AlarmTableViewController: UITableViewController {
                     } else {
                         alarmsData.insert(alarm, at: insertAt)
                     }
+                    userSwitchesStatesData.append(true)
                     tableView.reloadData()
                 }
+                userSwitchStates.setArray(theArray: userSwitchesStatesData)
             }
         }
     }
@@ -138,23 +159,31 @@ class AlarmTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualAlarms", for: indexPath) as! IndividualAlarmsTableViewCell
-        var alarmStateOn = cell.switchAlarmState.isOn
-        //If the switch is On
-        if (alarmStateOn) {
-            switchColor(itsOn: alarmStateOn, theCell: cell)
-        } else {
-            switchColor(itsOn: alarmStateOn, theCell: cell)
-        }
         
+        var subSwitch = cell.switchAlarmState
+        subSwitch?.tag = indexPath.row
         
         // Configure the cell...
+        let switchState = userSwitchesStatesData[indexPath.row] as Bool
+        cell.switchAlarmState.isOn = switchState
+        
+        
         let alarm = alarmsData[indexPath.row] as Alarm
         cell.alarmName.text = alarm.alarmName
         cell.alarmTime.text = alarm.alarmTime
         cell.timeUntilAlarm.text = alarm.timeUntilAlarm
+        
+        if (cell.switchAlarmState.isOn) {
+            switchColor(itsOn: true, theCell: cell)
+        } else {
+            switchColor(itsOn: false, theCell: cell)
+        }
+        
         cell.setEditing(true, animated: true)
         return cell
+
     }
+    
     
     //Switch color of the cell
     func switchColor(itsOn: Bool, theCell: IndividualAlarmsTableViewCell) {
@@ -198,7 +227,12 @@ class AlarmTableViewController: UITableViewController {
         }
     }
     
-    func shouldReload() {
+    func getUserSwitchesArray() -> [Bool] {
+        return userSwitchesStatesData
+    }
+    
+    func shouldReload(notification: NSNotification) {
+        userSwitchesStatesData = userSwitchStates.getArray()
         self.tableView.reloadData()
     }
     
@@ -240,6 +274,7 @@ class AlarmTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             alarmsData.remove(at: indexPath.row)
+            userSwitchesStatesData.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {
@@ -261,9 +296,19 @@ class AlarmTableViewController: UITableViewController {
             cell.backgroundColor = UIColor.black
         }
         
-        
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        defaults.set(userSwitchesStatesData, forKey: "savedUserSwitchStates")
+        
+        let alarmsDataObject = NSKeyedArchiver.archivedData(withRootObject: alarmsData)
+        defaults.set(alarmsDataObject, forKey: "savedAlarmsData")
+        
+        super.viewWillDisappear(true)
+    }
+    
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -278,7 +323,7 @@ class AlarmTableViewController: UITableViewController {
         return true
     }
     */
-
+    
     
     // MARK: - Navigation
 
@@ -296,6 +341,17 @@ class AlarmTableViewController: UITableViewController {
         } else if segue.identifier == "buttonToShowMakeAlarm" {
             
         }
+    }
+    
+    func applicationDidEnterBackground(application: UIApplication) {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+    defaults.set(userSwitchesStatesData, forKey: "savedUserSwitchStates")
+    
+    let alarmsDataObject = NSKeyedArchiver.archivedData(withRootObject: alarmsData)
+    defaults.set(alarmsDataObject, forKey: "savedAlarmsData")
+    
     }
     
 

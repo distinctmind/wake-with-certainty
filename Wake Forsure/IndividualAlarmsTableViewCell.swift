@@ -15,7 +15,9 @@ class IndividualAlarmsTableViewCell: UITableViewCell {
     @IBOutlet weak var alarmTime: UILabel!
     @IBOutlet weak var alarmName: UILabel!
     @IBOutlet weak var switchAlarmState: UISwitch!
-    
+    //let defaults = UserDefaults.standard
+    var userSwitchStates = UserSwitchStates()
+    var userSwitchesStatesData = [Bool]()
     
     
     override func awakeFromNib() {
@@ -29,9 +31,14 @@ class IndividualAlarmsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func switchToggle(_ sender: Any) {
+    @IBAction func switchToggle(_ sender: UISwitch) {
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchToggled"), object: nil)
+        var numId = sender.tag
+        userSwitchesStatesData = userSwitchStates.getArray()
+        userSwitchesStatesData[numId] = sender.isOn
+        print(sender.isOn)
+        userSwitchStates.setArray(theArray: userSwitchesStatesData)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchToggled"), object: numId)
     }
     
     
