@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -122,16 +123,25 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IhQ-hJ-7dd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jko-HT-kRV">
-                            <color key="tintColor" red="0.98456599977520409" green="0.98022806682252173" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="buttonPressed:" destination="42Q-fh-izk" id="oA1-iA-vl7"/>
-                                <segue destination="ru0-2I-17C" kind="show" identifier="buttonToShowMakeAlarm" id="enS-Sz-UwT"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Jko-HT-kRV">
+                                <color key="tintColor" red="0.98456599977520409" green="0.98022806682252173" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="42Q-fh-izk" id="oA1-iA-vl7"/>
+                                    <segue destination="ru0-2I-17C" kind="show" identifier="buttonToShowMakeAlarm" id="enS-Sz-UwT"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="GaQ-MF-mPy">
+                                <color key="tintColor" red="0.98456599980000004" green="0.98022806679999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="trashSongTitles:" destination="42Q-fh-izk" id="WnJ-A2-M0s"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="trashButton" destination="GaQ-MF-mPy" id="ImB-BS-swM"/>
                         <segue destination="ru0-2I-17C" kind="show" identifier="showAlarmMaking" id="jPm-4Z-wX1"/>
                     </connections>
                 </tableViewController>
@@ -143,14 +153,14 @@
         <scene sceneID="l9g-Ps-wxc">
             <objects>
                 <tableViewController id="ru0-2I-17C" customClass="MakeAlarmTableViewController" customModule="Wake_Forsure" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="400" sectionHeaderHeight="28" sectionFooterHeight="28" id="0gm-00-A3q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="400" sectionHeaderHeight="28" sectionFooterHeight="28" id="0gm-00-A3q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="H8V-gp-nyV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="344" id="G6t-t7-JKA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="344" id="G6t-t7-JKA">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="G6t-t7-JKA" id="v6B-JM-wQd">
@@ -187,7 +197,7 @@
                                                     </connections>
                                                 </datePicker>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="O3f-jq-JZH" firstAttribute="top" secondItem="SeQ-L9-P7m" secondAttribute="bottom" constant="18" id="0bg-8f-avk"/>
                                                 <constraint firstItem="mzf-M4-1v7" firstAttribute="top" secondItem="O3f-jq-JZH" secondAttribute="bottom" constant="18" id="Cn1-bx-sgh"/>
@@ -201,17 +211,38 @@
                                                 <constraint firstItem="mzf-M4-1v7" firstAttribute="leading" secondItem="v6B-JM-wQd" secondAttribute="leadingMargin" constant="14" id="zbk-WX-Tl8"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.35811516746518224" blue="0.34837280653904734" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.98814350263570527" blue="0.95462271491162964" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="344" id="X1V-HB-Mw9">
-                                        <rect key="frame" x="0.0" y="344" width="320" height="344"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="30" id="X1V-HB-Mw9">
+                                        <rect key="frame" x="0.0" y="344" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="X1V-HB-Mw9" id="AOH-7S-jOO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvS-bV-Pea">
+                                                    <rect key="frame" x="16" y="5" width="43.5" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bounce Back" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ds-Cg-VCY">
+                                                    <rect key="frame" x="89" y="5" width="217" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.20403251262626265" green="0.20403251262626265" blue="0.20403251262626265" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="4ds-Cg-VCY" firstAttribute="leading" secondItem="AOH-7S-jOO" secondAttribute="leadingMargin" constant="81" id="HTE-qS-9Wj"/>
+                                                <constraint firstItem="nvS-bV-Pea" firstAttribute="leading" secondItem="AOH-7S-jOO" secondAttribute="leadingMargin" constant="8" id="Nd1-2e-chK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4ds-Cg-VCY" secondAttribute="bottom" constant="-3" id="TGB-LL-tdq"/>
+                                                <constraint firstItem="nvS-bV-Pea" firstAttribute="top" secondItem="AOH-7S-jOO" secondAttribute="topMargin" constant="-3" id="XAz-OW-79x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4ds-Cg-VCY" secondAttribute="trailing" constant="6" id="opb-Rb-EAf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -233,14 +264,50 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="alarmNameTextField" destination="SeQ-L9-P7m" id="EV1-XZ-aLQ"/>
+                        <outlet property="alarmSongLabel" destination="nvS-bV-Pea" id="pcB-Vv-jmY"/>
+                        <outlet property="alarmSongNameLabel" destination="4ds-Cg-VCY" id="sg2-tF-iad"/>
                         <outlet property="alarmTimePicker" destination="O3f-jq-JZH" id="3tq-ae-9gz"/>
                         <outlet property="timeUntilAlarmLabel" destination="mzf-M4-1v7" id="R9N-pj-aMT"/>
+                        <segue destination="KYP-6p-0DE" kind="show" identifier="showSongs" id="vkT-VG-8md"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLv-j8-uPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bcp-m6-agV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4822.5" y="135.21126760563379"/>
+        </scene>
+        <!--Add Song Table View Controller-->
+        <scene sceneID="kUW-Fc-ni4">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="KYP-6p-0DE" customClass="AddSongTableViewController" customModule="Wake_Forsure" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5AF-kF-PpV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongTableViewCell" id="eIz-d2-XYy" customClass="SongTableViewCell" customModule="Wake_Forsure" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eIz-d2-XYy" id="ltK-Bl-CbR">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="KYP-6p-0DE" id="m0U-aj-1IM"/>
+                            <outlet property="delegate" destination="KYP-6p-0DE" id="YNN-p1-poD"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="vrR-og-m8y" kind="unwind" identifier="saveSong" unwindAction="unwindToMakeAlarmControllerWithSegue:" id="JQ0-du-iCu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bed-aC-xZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vrR-og-m8y" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5634.375" y="-225"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="apo-Ez-XCu">
@@ -262,6 +329,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="enS-Sz-UwT"/>
+        <segue reference="jPm-4Z-wX1"/>
     </inferredMetricsTieBreakers>
 </document>

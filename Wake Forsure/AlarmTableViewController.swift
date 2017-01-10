@@ -18,13 +18,17 @@ class AlarmTableViewController: UITableViewController {
     
     
     var userTheme = UserTheme.userThemeInstance
-    var theAlarmState = false
     
+    var theAlarmState = false
     var userSwitchStates = UserSwitchStates()
     var userSwitchesStatesData = [Bool]()
-    var alarmsData = [Alarm]()
     
+    var alarmsData = [Alarm]()
     let defaults = UserDefaults.standard
+    var theSongTitle = [String]()
+    
+    @IBOutlet weak var trashButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -45,6 +49,8 @@ class AlarmTableViewController: UITableViewController {
             
             if let loadedAlarm = NSKeyedUnarchiver.unarchiveObject(with: loadedAlarmsData) as? [Alarm] {
                 alarmsData = loadedAlarm
+                updateTimes()
+                self.updateTimeUntilAlarm()
             }
         }
 
@@ -68,15 +74,20 @@ class AlarmTableViewController: UITableViewController {
 
             
         }
+        
+        let timeUntilAlarmTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.updateTimeUntilAlarm), userInfo: nil, repeats: true)
+
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
-        //tableView.backgroundColor = UIColor.black
-        //self.navigationController?.navigationBar.barStyle = UIBarStyle.black;  // optional
+        
+        //If the user was editing a cell but decided to go back
+        if (cellEdited) {
+            cellEdited = false
+        }
+        
         self.tableView.separatorStyle = .none
-    
         super.viewWillAppear(true)
         
     }
@@ -84,8 +95,7 @@ class AlarmTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(true)
-        //sampleData = SampleData()
-        //var alarmsData = sampleData.getArray()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,6 +106,28 @@ class AlarmTableViewController: UITableViewController {
     @IBAction func cancelToAlarmTableViewController(segue:UIStoryboardSegue) {
     }
     
+    //This function makes sure that all alarms are occuring on the same day
+    func updateTimes() {
+        
+        let date = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy MM dd"
+        
+        let otherDateFormatter = DateFormatter()
+        otherDateFormatter.dateFormat = "yyyy MM dd h:mm a"
+        otherDateFormatter.amSymbol = "AM"
+        otherDateFormatter.pmSymbol = "PM"
+        
+        var newString = ""
+        let newDate = dateFormatter.string(from: date)
+        
+        for alarm in alarmsData {
+            newString = newDate + " " + alarm.alarmTime
+            alarm.alarmDate = otherDateFormatter.date(from: newString)
+        }
+    }
+    
     
     @IBAction func saveAlarmDetail(segue:UIStoryboardSegue) {
         
@@ -103,7 +135,7 @@ class AlarmTableViewController: UITableViewController {
         var insertAt = Int()
        
         if let makeAlarmTableViewController = segue.source as? MakeAlarmTableViewController {
-            
+            makeAlarmTableViewController.editingCell = false
             //Add the new alarm to the array
             if let alarm = makeAlarmTableViewController.alarm {
                 
@@ -144,6 +176,8 @@ class AlarmTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func trashSongTitles(_ sender: Any) {
+    }
 
     // MARK: - Table view data source
 
@@ -155,12 +189,11 @@ class AlarmTableViewController: UITableViewController {
         return alarmsData.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualAlarms", for: indexPath) as! IndividualAlarmsTableViewCell
-        
-        var subSwitch = cell.switchAlarmState
+    
+        let subSwitch = cell.switchAlarmState
         subSwitch?.tag = indexPath.row
         
         // Configure the cell...
@@ -182,6 +215,16 @@ class AlarmTableViewController: UITableViewController {
         cell.setEditing(true, animated: true)
         return cell
 
+    }
+    
+    
+    func updateTimeUntilAlarm() {
+        
+        for eachAlarm in alarmsData {
+            eachAlarm.timeUntilAlarm = eachAlarm.timeUntilAlarm(userDate: eachAlarm.alarmDate.timeIntervalSinceNow)
+        }
+        self.tableView.reloadData()
+        
     }
     
     
@@ -242,6 +285,7 @@ class AlarmTableViewController: UITableViewController {
         }
     }
     
+    //This function returns the index at which the alarm should be inserted
     func getAlarmOrder(alarmDate: Date) -> Int {
         var counter = 0
         valueIsLargest = false
@@ -272,9 +316,14 @@ class AlarmTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            
+            //Delete the Alarm Object
             alarmsData.remove(at: indexPath.row)
+            
+            //Delete The Switch State Value for that Alarm
             userSwitchesStatesData.remove(at: indexPath.row)
+        
+            //Delete the actual row
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {
@@ -283,8 +332,13 @@ class AlarmTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //User has selected an alarm.
+        
         theSelectedIndexPath = indexPath.row
+        
         cellEdited = true
+        
         performSegue(withIdentifier: "showAlarmMaking", sender: nil)
     }
     
@@ -329,15 +383,21 @@ class AlarmTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "showAlarmMaking" {
             
             let vc = segue.destination as! MakeAlarmTableViewController
+            
             vc.theIndexPathRow = theSelectedIndexPath
+            
             vc.editingCell = true
+            
             vc.alarmArray = alarmsData
+
+            
         } else if segue.identifier == "buttonToShowMakeAlarm" {
             
         }
@@ -347,10 +407,10 @@ class AlarmTableViewController: UITableViewController {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-    defaults.set(userSwitchesStatesData, forKey: "savedUserSwitchStates")
-    
-    let alarmsDataObject = NSKeyedArchiver.archivedData(withRootObject: alarmsData)
-    defaults.set(alarmsDataObject, forKey: "savedAlarmsData")
+        defaults.set(userSwitchesStatesData, forKey: "savedUserSwitchStates")
+        
+        let alarmsDataObject = NSKeyedArchiver.archivedData(withRootObject: alarmsData)
+        defaults.set(alarmsDataObject, forKey: "savedAlarmsData")
     
     }
     

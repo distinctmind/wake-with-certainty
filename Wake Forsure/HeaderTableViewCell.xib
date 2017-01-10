@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddSongTableViewController" customModule="Wake_Forsure" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderTableViewCell" id="KGk-i7-Jjw" customClass="HeaderTableViewCell" customModule="Wake_Forsure" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JA4-35-1jN">
+                        <rect key="frame" x="36" y="11" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="E5S-du-aUb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YZ-4e-6dT">
+                        <rect key="frame" x="285" y="10" width="22" height="22"/>
+                        <connections>
+                            <action selector="addSongButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iQh-eX-hWq"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JA4-35-1jN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="28" id="1u4-vc-zCI"/>
+                    <constraint firstItem="JA4-35-1jN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="5wn-h6-yDL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="9YZ-4e-6dT" secondAttribute="trailing" constant="5" id="K17-Gy-uNG"/>
+                    <constraint firstItem="9YZ-4e-6dT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Lfv-eS-Six"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="JA4-35-1jN" secondAttribute="bottom" constant="3" id="R0b-Rv-8Ih"/>
+                    <constraint firstItem="JA4-35-1jN" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="V0w-FS-DsO"/>
+                    <constraint firstItem="9YZ-4e-6dT" firstAttribute="leading" secondItem="JA4-35-1jN" secondAttribute="trailing" id="kVg-8Q-2lv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addSongButton" destination="9YZ-4e-6dT" id="xws-ND-KPq"/>
+                <outlet property="songHeaderLabel" destination="JA4-35-1jN" id="7Ha-29-Ho6"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

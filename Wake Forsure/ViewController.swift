@@ -16,24 +16,31 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.title = "Clock"
-        var upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
+        let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender:)))
         upSwipe.direction = .up
         view.addGestureRecognizer(upSwipe)
         
-        let dayNightSwitch = DayNightSwitch(frame: CGRect(x: 20, y: 20, width: 60, height: 30))
+        let dayNightSwitch = DayNightSwitch(frame: CGRect(x: 20, y: 30, width: 60, height: 30))
+        
         dayNightSwitch.changeAction = { on in
             print("The switch is now " + (on ? "on" : "off"))
         }
+        
         self.view.addSubview(dayNightSwitch)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(dayThemeOn), name: NSNotification.Name(rawValue: "dayThemeOn"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        var helloWorldTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("changeTime"), userInfo: nil, repeats: true)
+        
+        let helloWorldTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("changeTime"), userInfo: nil, repeats: true)
         
         if (userTheme.getUserTheme() == "blackTheme") {
             UIApplication.shared.statusBarStyle = .lightContent
@@ -50,6 +57,7 @@ class ViewController: UIViewController {
     }
     
     func dayThemeOn(notification: NSNotification) {
+        
         if (notification.object as! Bool == false) {
             userTheme.setCurrentUserTheme(userThemeString: "blackTheme")
             self.view.backgroundColor = UIColor.black
@@ -69,7 +77,7 @@ class ViewController: UIViewController {
     func changeTime() {
         
         dateFormatter.timeStyle = .medium
-        var timeString = "\(dateFormatter.string(from: Date()))"
+        let timeString = "\(dateFormatter.string(from: Date()))"
         timeLabel.text = timeString
     }
     

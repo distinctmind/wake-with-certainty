@@ -36,7 +36,6 @@ class IndividualAlarmsTableViewCell: UITableViewCell {
         var numId = sender.tag
         userSwitchesStatesData = userSwitchStates.getArray()
         userSwitchesStatesData[numId] = sender.isOn
-        print(sender.isOn)
         userSwitchStates.setArray(theArray: userSwitchesStatesData)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchToggled"), object: numId)
     }
