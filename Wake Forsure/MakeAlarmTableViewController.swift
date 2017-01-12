@@ -13,7 +13,6 @@ import MediaPlayer
 class MakeAlarmTableViewController: UITableViewController {
     
     var alarm:Alarm?
-    //var alarmFunctions = Alarm()
 
     @IBOutlet weak var alarmTimePicker: UIDatePicker!
     @IBOutlet weak var timeUntilAlarmLabel: UILabel!
@@ -26,10 +25,12 @@ class MakeAlarmTableViewController: UITableViewController {
 
     var theIndexPathRow: Int?
     var editingCell = false
-    var userChoseSong = false
+    var userChoseSong: Bool?
     var userTheme = UserTheme.userThemeInstance
+    
     var alarmSong: MPMediaItemCollection?
     var defaultAlarmSong: [String: URL]?
+    
     let defaults = UserDefaults.standard
     var theSongTitle = [String]()
     var arrayOfCellData = [[cellData]]()
@@ -37,23 +38,18 @@ class MakeAlarmTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        //var touchScreen = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-        //touchScreen.numberOfTapsRequired = 1
-        //UITableViewCell.view .addGestureRecognizer(touchScreen)
-        
         //NotificationCenter.default.addObserver(self, selector: #selector(updateTimeUntilAlarm), name: NSNotification.Name(rawValue: "updateTimeUntilAlarm"), object: nil)
-        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(true)
         
         tableView.estimatedRowHeight = 650.0
@@ -92,72 +88,89 @@ class MakeAlarmTableViewController: UITableViewController {
             timeUntilAlarmLabel.textColor = UIColor.black
         }
         
-        if (editingCell && !userChoseSong) {
-
+        //User is in a editing cell
+        if (editingCell) {
             
-            alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
-            alarmNameTextField.text = alarmArray[(theIndexPathRow)!].alarmName
-            timeUntilAlarmLabel.text = alarmArray[(theIndexPathRow)!].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
-            
-            
-            if (alarmArray[theIndexPathRow!].alarmSong != nil) {
-                alarmSongNameLabel.text = alarmArray[theIndexPathRow!].alarmSong.items[0].title!
-            } else {
-                alarmSongNameLabel.text = getDefaultSongTitle(theDefaultSongDict: alarmArray[theIndexPathRow!].defaultAlarmSong)
-            }
-            
-        } else if (userChoseSong && !editingCell) {
-            
-            userChoseSong = false
-            
-            if (alarmArray[alarmArray.count-1].alarmSong != nil) {
-                alarmSongNameLabel.text = alarmArray[alarmArray.count-1].alarmSong.items[0].title!
-            } else {
-                alarmSongNameLabel.text = getDefaultSongTitle(theDefaultSongDict: alarmArray[alarmArray.count-1].defaultAlarmSong)
-            }
-            
-            timeUntilAlarmLabel.text = alarmArray[alarmArray.count-1].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
-            
-            } else if (userChoseSong && editingCell) {
-            
-                userChoseSong = false
-            
-                //alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
-                //alarmNameTextField.text = alarmArray[(theIndexPathRow)!].alarmName
-                //timeUntilAlarmLabel.text = alarmArray[(theIndexPathRow)!].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
-            
+            //User is coming from the Alarm View
+            if (!userChoseSong!) {
                 
-                //alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
-            
+                alarmTimePicker.date = alarmArray[(theIndexPathRow)!].alarmDate!
+                alarmNameTextField.text = alarmArray[(theIndexPathRow)!].alarmName
+                timeUntilAlarmLabel.text = alarmArray[(theIndexPathRow)!].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+                
+                //User has a custom song in the editing cell
                 if (alarmArray[theIndexPathRow!].alarmSong != nil) {
+                    
+                    alarmSong = alarmArray[theIndexPathRow!].alarmSong
+                    defaultAlarmSong = nil
                     alarmSongNameLabel.text = alarmArray[theIndexPathRow!].alarmSong.items[0].title!
+                    
+               //User has a default song in the editing cell
                 } else {
+                    defaultAlarmSong = alarmArray[theIndexPathRow!].defaultAlarmSong
+                    alarmSong = nil
                     alarmSongNameLabel.text = getDefaultSongTitle(theDefaultSongDict: alarmArray[theIndexPathRow!].defaultAlarmSong)
                 }
-                timeUntilAlarmLabel.text = alarmArray[theIndexPathRow!].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+                
+            //User coming from Add Song View
             } else {
-            
-                alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date), alarmDate: alarmTimePicker.date)
                 
-                alarmArray.append(alarm!)
-                
-                timeUntilAlarmLabel.text = alarmArray[alarmArray.count-1].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
-                alarmSongNameLabel.text = "Choose Song"
+                if (alarmArray[theIndexPathRow!].alarmSong != nil) {
+                    
+                    alarmSong = alarmArray[theIndexPathRow!].alarmSong
+                    defaultAlarmSong = nil
+                    alarmSongNameLabel.text = alarmArray[theIndexPathRow!].alarmSong.items[0].title!
+                    
+                } else {
+                    
+                    defaultAlarmSong = alarmArray[theIndexPathRow!].defaultAlarmSong
+                    alarmSong = nil
+                    alarmSongNameLabel.text = getDefaultSongTitle(theDefaultSongDict: alarmArray[theIndexPathRow!].defaultAlarmSong)
+                    
+                }
+                timeUntilAlarmLabel.text = alarmArray[theIndexPathRow!].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
             }
         
+        // User is in a new cell
+        } else {
+            
+            //User is coming from Alarm View
+            if (!userChoseSong!) {
+                
+                alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date), alarmDate: alarmTimePicker.date)
+                alarmArray.append(alarm!)
+                timeUntilAlarmLabel.text = alarmArray[alarmArray.count-1].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+                alarmSongNameLabel.text = "Choose Song"
+            
+            //User is coming from Add Song View
+            } else {
+                
+                if (alarmArray[alarmArray.count-1].alarmSong != nil) {
+                    alarmSong = alarmArray[alarmArray.count-1].alarmSong
+                    defaultAlarmSong = nil
+                    alarmSongNameLabel.text = alarmArray[alarmArray.count-1].alarmSong.items[0].title!
+                } else {
+                    defaultAlarmSong = alarmArray[alarmArray.count-1].defaultAlarmSong
+                    alarmSong = nil
+                    alarmSongNameLabel.text = getDefaultSongTitle(theDefaultSongDict: alarmArray[alarmArray.count-1].defaultAlarmSong)
+                }
+                
+                timeUntilAlarmLabel.text = alarmArray[alarmArray.count-1].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+            }
+        }
         
     }
     
     func getDefaultSongTitle(theDefaultSongDict: [String: URL]) -> String {
-        for (key, value) in theDefaultSongDict {
-            print(key)
-            print(value)
+        
+        for key in theDefaultSongDict.keys {
             return key
         }
         return ""
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         if (userTheme.getUserTheme() == "blackTheme") {
             cell.contentView.backgroundColor = UIColor.black
         } else {
@@ -170,6 +183,7 @@ class MakeAlarmTableViewController: UITableViewController {
         if let addSongTableViewController = segue.source as? AddSongTableViewController {
             
             userChoseSong = true
+            
             addSongTableViewController.editingCell = false
             
             if (addSongTableViewController.songChosen != nil) {
@@ -177,8 +191,9 @@ class MakeAlarmTableViewController: UITableViewController {
                 //User chose a custom song from iPhone Music Library
                 
                 alarmSong = addSongTableViewController.songChosen
+                defaultAlarmSong = nil
                 
-                //Meaning user is in editing cell
+                //User is in a editing cell
                 if (theIndexPathRow != nil) {
                     
                     alarmArray[theIndexPathRow!].alarmSong = alarmSong!
@@ -187,7 +202,8 @@ class MakeAlarmTableViewController: UITableViewController {
                     if (alarmArray[theIndexPathRow!].defaultAlarmSong != nil) {
                         alarmArray[theIndexPathRow!].defaultAlarmSong = nil
                     }
-                //Meaning user is is a new cell
+                    
+                //User is is in a new cell
                 } else {
                     
                     alarmArray[alarmArray.count-1].alarmSong = alarmSong!
@@ -204,7 +220,8 @@ class MakeAlarmTableViewController: UITableViewController {
                 //User chose one of the defaults songs
                 
                 defaultAlarmSong = addSongTableViewController.defaultSongChosen
-            
+                alarmSong = nil
+                
                 if (theIndexPathRow != nil) {
                     
                     alarmArray[theIndexPathRow!].defaultAlarmSong = defaultAlarmSong!
@@ -226,27 +243,54 @@ class MakeAlarmTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        //User clicked the "Done" Button
         if segue.identifier == "SaveAlarmDetail" {
             
+            //Close keyboard
             alarmNameTextField.resignFirstResponder()
             
+            //If User chose no alarm name
             if (alarmNameTextField.text == "" || alarmNameTextField.text == nil) {
                 alarmNameTextField.text = "Alarm"
             }
-
+            
+            //User chose a custom song
             if (alarmSong != nil) {
                 alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date), alarmDate: alarmTimePicker.date, alarmSong: alarmSong)
+            
+            //User chose a default song
             } else if (defaultAlarmSong != nil) {
                 alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date), alarmDate: alarmTimePicker.date, defaultAlarmSong: defaultAlarmSong)
+            
+            //User didn't chose any song
             } else {
                 alarm = Alarm(alarmName: alarmNameTextField?.text,timeUntilAlarm: timeUntilAlarmLabel?.text, alarmTime: getAlarmTime(alarmTime: alarmTimePicker.date), alarmDate: alarmTimePicker.date, defaultAlarmSong: ["Respiration": URL(fileURLWithPath: Bundle.main.path(forResource: "Respiration", ofType: "mp3")!)])
             }
             
-        
+        //User clicked on the "Choose Song" cell
         } else if (segue.identifier == "showSongs") {
+            
             let controller = segue.destination as! AddSongTableViewController
+            
             controller.editingCell = editingCell
+            
             controller.cellIndexPath = theIndexPathRow
+            
+            //User already has a custom song
+            if (alarmSong != nil) {
+                controller.songAlreadyChosen = alarmSong
+            
+            //User already has a default song
+            } else if (defaultAlarmSong != nil) {
+                controller.defaultSongAlreadyChosen = defaultAlarmSong
+            
+            //User didn't choose any songs yet
+            } else {
+                controller.selectedSongInfo = ["9":9]
+                defaults.set(controller.selectedSongInfo, forKey: "selectedSongInfo")
+            }
+            
         }
         
         
@@ -255,8 +299,11 @@ class MakeAlarmTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        //Close keyboard if user clicks on anywhere on first cell
         if (indexPath.row == 0 && indexPath.section == 0) {
             alarmNameTextField.resignFirstResponder()
+        
+        //Makes sure that user clicked on "Choose Song" cell
         } else if (indexPath.row == 1 && indexPath.section == 0) {
           performSegue(withIdentifier: "showSongs", sender: nil)
         }
@@ -275,22 +322,20 @@ class MakeAlarmTableViewController: UITableViewController {
         alarmNameTextField.resignFirstResponder()
         return alarmNameTextField.isFirstResponder;
     }
-    
-    /*
-    func handleTap(sender: UISwipeGestureRecognizer) {
-        
-        if (sender.state == .ended) {
-            alarmNameTextField.resignFirstResponder()
-        }
-    }
-    */
+
     
     @IBAction func alarmTimeAction(_ sender: Any) {
+        
+        /*
         if (editingCell) {
             timeUntilAlarmLabel.text = alarmArray[(theIndexPathRow)!].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
         } else {
             timeUntilAlarmLabel.text = alarmArray[0].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
         }
+        */
+        
+        timeUntilAlarmLabel.text = alarmArray[0].timeUntilAlarm(userDate: alarmTimePicker.date.timeIntervalSinceNow)
+        
     }
     
     func getAlarmTime(alarmTime: Date) -> String {
@@ -305,24 +350,17 @@ class MakeAlarmTableViewController: UITableViewController {
     }
     
     func getTime(alarmDate: Date) -> Date {
+        
         let dateFormatter = DateFormatter()
-        print(alarmDate)
         dateFormatter.dateFormat = "h:mm a"
+        
         let theStringDate = dateFormatter.string(from: alarmDate)
-        print(theStringDate)
+        
         let theNewDate = convertStringToText(string: theStringDate)!
-        print(theNewDate)
+        
         return theNewDate
 
     }
-    
-    
-    /*
-    func updateTimeUntilAlarm() {
-        //timeUntilAlarmLabel.text = timeUntilAlarm(userDate: )
-    }
-    */
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

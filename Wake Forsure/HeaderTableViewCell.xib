@@ -38,6 +38,7 @@
                 <constraints>
                     <constraint firstItem="JA4-35-1jN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="28" id="1u4-vc-zCI"/>
                     <constraint firstItem="JA4-35-1jN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="5wn-h6-yDL"/>
+                    <constraint firstItem="JA4-35-1jN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JZf-yy-UeT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9YZ-4e-6dT" secondAttribute="trailing" constant="5" id="K17-Gy-uNG"/>
                     <constraint firstItem="9YZ-4e-6dT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Lfv-eS-Six"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JA4-35-1jN" secondAttribute="bottom" constant="3" id="R0b-Rv-8Ih"/>
@@ -45,6 +46,12 @@
                     <constraint firstItem="9YZ-4e-6dT" firstAttribute="leading" secondItem="JA4-35-1jN" secondAttribute="trailing" id="kVg-8Q-2lv"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="JA4-35-1jN" firstAttribute="top" secondItem="KGk-i7-Jjw" secondAttribute="top" constant="11" id="N9K-xm-e1y"/>
+                <constraint firstItem="JA4-35-1jN" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" constant="36" id="j8m-zY-Pyl"/>
+                <constraint firstAttribute="bottom" secondItem="JA4-35-1jN" secondAttribute="bottom" constant="12" id="kPM-G9-nye"/>
+                <constraint firstAttribute="trailing" secondItem="JA4-35-1jN" secondAttribute="trailing" constant="35" id="zC9-z0-HO9"/>
+            </constraints>
             <connections>
                 <outlet property="addSongButton" destination="9YZ-4e-6dT" id="xws-ND-KPq"/>
                 <outlet property="songHeaderLabel" destination="JA4-35-1jN" id="7Ha-29-Ho6"/>

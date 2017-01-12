@@ -14,7 +14,7 @@
 		EA0E5AA91E19A97400375632 /* everytime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA0E5AA41E19A97200375632 /* everytime.mp3 */; };
 		EA21D34F1E12C9D800F5DEDE /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA21D34D1E12C9D800F5DEDE /* HeaderTableViewCell.swift */; };
 		EA21D3501E12C9D800F5DEDE /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA21D34E1E12C9D800F5DEDE /* HeaderTableViewCell.xib */; };
-		EA21D3521E12D4AB00F5DEDE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA21D3511E12D4AB00F5DEDE /* SongTableViewCell.swift */; };
+		EA21D3521E12D4AB00F5DEDE /* SongTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA21D3511E12D4AB00F5DEDE /* SongTableViewCell2.swift */; };
 		EA21D3551E12D54100F5DEDE /* Header2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA21D3531E12D54100F5DEDE /* Header2TableViewCell.swift */; };
 		EA21D3561E12D54100F5DEDE /* Header2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA21D3541E12D54100F5DEDE /* Header2TableViewCell.xib */; };
 		EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */; };
@@ -33,6 +33,9 @@
 		EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */; };
 		EADD63A11DF5BAD80096F918 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD63A01DF5BAD80096F918 /* Alarm.swift */; };
 		EADD63A31DF5C0900096F918 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD63A21DF5C0900096F918 /* SampleData.swift */; };
+		EAEB3F2A1E247B54002439CA /* AddSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEB3F291E247B54002439CA /* AddSongViewController.swift */; };
+		EAEB3F2D1E247C2F002439CA /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEB3F2B1E247C2F002439CA /* SongTableViewCell.swift */; };
+		EAEB3F2E1E247C2F002439CA /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEB3F2C1E247C2F002439CA /* SongTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +46,7 @@
 		EA0E5AA41E19A97200375632 /* everytime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = everytime.mp3; sourceTree = "<group>"; };
 		EA21D34D1E12C9D800F5DEDE /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		EA21D34E1E12C9D800F5DEDE /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
-		EA21D3511E12D4AB00F5DEDE /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		EA21D3511E12D4AB00F5DEDE /* SongTableViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell2.swift; sourceTree = "<group>"; };
 		EA21D3531E12D54100F5DEDE /* Header2TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header2TableViewCell.swift; sourceTree = "<group>"; };
 		EA21D3541E12D54100F5DEDE /* Header2TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header2TableViewCell.xib; sourceTree = "<group>"; };
 		EA25774C1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualAlarmsTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +67,9 @@
 		EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 		EADD63A01DF5BAD80096F918 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		EADD63A21DF5C0900096F918 /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		EAEB3F291E247B54002439CA /* AddSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSongViewController.swift; sourceTree = "<group>"; };
+		EAEB3F2B1E247C2F002439CA /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		EAEB3F2C1E247C2F002439CA /* SongTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +115,9 @@
 				EA21D34E1E12C9D800F5DEDE /* HeaderTableViewCell.xib */,
 				EA21D3531E12D54100F5DEDE /* Header2TableViewCell.swift */,
 				EA21D3541E12D54100F5DEDE /* Header2TableViewCell.xib */,
-				EA21D3511E12D4AB00F5DEDE /* SongTableViewCell.swift */,
+				EA21D3511E12D4AB00F5DEDE /* SongTableViewCell2.swift */,
+				EAEB3F2B1E247C2F002439CA /* SongTableViewCell.swift */,
+				EAEB3F2C1E247C2F002439CA /* SongTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -122,6 +130,7 @@
 				EAD6BD9A1DF3310400C3DD67 /* AlarmTableViewController.swift */,
 				EA2577541DF38AE2006197A7 /* MakeAlarmTableViewController.swift */,
 				EA62C62A1E0EB84400898E0F /* AddSongTableViewController.swift */,
+				EAEB3F291E247B54002439CA /* AddSongViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -222,6 +231,7 @@
 				EA21D3561E12D54100F5DEDE /* Header2TableViewCell.xib in Resources */,
 				EA0E5AA61E19A97400375632 /* Surfin.mp3 in Resources */,
 				EA0E5AA71E19A97400375632 /* Lovely Day.mp3 in Resources */,
+				EAEB3F2E1E247C2F002439CA /* SongTableViewCell.xib in Resources */,
 				EA0E5AA51E19A97400375632 /* Respiration.mp3 in Resources */,
 				EA0E5AA81E19A97400375632 /* With Me.mp3 in Resources */,
 				EA21D3501E12C9D800F5DEDE /* HeaderTableViewCell.xib in Resources */,
@@ -240,10 +250,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA34B2C31E06CF88007446E5 /* DayNightSwitch.swift in Sources */,
+				EAEB3F2A1E247B54002439CA /* AddSongViewController.swift in Sources */,
 				EAD016F51DEB881500B66ACD /* ViewController.swift in Sources */,
 				EA780C6C1E09DBB200807514 /* UserSwitchStates.swift in Sources */,
 				EA21D3551E12D54100F5DEDE /* Header2TableViewCell.swift in Sources */,
 				EAD6BD9B1DF3310400C3DD67 /* AlarmTableViewController.swift in Sources */,
+				EAEB3F2D1E247C2F002439CA /* SongTableViewCell.swift in Sources */,
 				EA62C62B1E0EB84500898E0F /* AddSongTableViewController.swift in Sources */,
 				EA25774D1DF33B94006197A7 /* IndividualAlarmsTableViewCell.swift in Sources */,
 				EADD63A11DF5BAD80096F918 /* Alarm.swift in Sources */,
@@ -252,7 +264,7 @@
 				EA2577511DF347FC006197A7 /* IndividualAlarmsTableViewController.swift in Sources */,
 				EA21D34F1E12C9D800F5DEDE /* HeaderTableViewCell.swift in Sources */,
 				EAD016FB1DEB881600B66ACD /* Wake_Forsure.xcdatamodeld in Sources */,
-				EA21D3521E12D4AB00F5DEDE /* SongTableViewCell.swift in Sources */,
+				EA21D3521E12D4AB00F5DEDE /* SongTableViewCell2.swift in Sources */,
 				EADD63A31DF5C0900096F918 /* SampleData.swift in Sources */,
 				EA2577551DF38AE2006197A7 /* MakeAlarmTableViewController.swift in Sources */,
 			);

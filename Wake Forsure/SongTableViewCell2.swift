@@ -1,21 +1,17 @@
 //
-//  SongTableViewCell.swift
+//  SongTableViewCell2.swift
 //  Wake Forsure
 //
-//  Created by Jeanlouis Rebello on 2017-01-09.
-//  Copyright © 2017 DistinctApps. All rights reserved.
+//  Created by Jeanlouis Rebello on 2016-12-27.
+//  Copyright © 2016 DistinctApps. All rights reserved.
 //
 
 import UIKit
 
-class SongTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var songNameLabel: UILabel!
-    @IBOutlet weak var checkMarkImage: UIImageView!
+class SongTableViewCell2: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Initialization code
     }
 
@@ -24,5 +20,6 @@ class SongTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+     
+
 }

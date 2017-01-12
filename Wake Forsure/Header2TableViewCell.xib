@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlm-V0-Ejx">
@@ -27,12 +27,20 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="vlm-V0-Ejx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Fbm-6t-inl"/>
                     <constraint firstAttribute="trailingMargin" secondItem="vlm-V0-Ejx" secondAttribute="trailing" id="IcS-hz-3wS"/>
                     <constraint firstItem="vlm-V0-Ejx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="M9Q-P3-ziC"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vlm-V0-Ejx" secondAttribute="bottom" constant="4" id="bwa-Mi-z11"/>
+                    <constraint firstItem="vlm-V0-Ejx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="muV-hc-lxc"/>
                     <constraint firstAttribute="leadingMargin" secondItem="vlm-V0-Ejx" secondAttribute="leading" id="tDZ-My-JWY"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vlm-V0-Ejx" secondAttribute="trailing" constant="8" id="Abz-Gq-qgV"/>
+                <constraint firstItem="vlm-V0-Ejx" firstAttribute="top" secondItem="KGk-i7-Jjw" secondAttribute="top" constant="11" id="Dhk-jP-oQ5"/>
+                <constraint firstAttribute="bottom" secondItem="vlm-V0-Ejx" secondAttribute="bottom" constant="12" id="Ds1-HX-e21"/>
+                <constraint firstItem="vlm-V0-Ejx" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" constant="8" id="x9q-rY-ao1"/>
+            </constraints>
             <connections>
                 <outlet property="songHeader2Label" destination="vlm-V0-Ejx" id="x8t-h3-JbW"/>
             </connections>

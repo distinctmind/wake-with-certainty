@@ -135,6 +135,7 @@ class AlarmTableViewController: UITableViewController {
         var insertAt = Int()
        
         if let makeAlarmTableViewController = segue.source as? MakeAlarmTableViewController {
+            
             makeAlarmTableViewController.editingCell = false
             //Add the new alarm to the array
             if let alarm = makeAlarmTableViewController.alarm {
@@ -164,8 +165,10 @@ class AlarmTableViewController: UITableViewController {
                     
                     //We only want to append if array is empty or value is not yet in array
                     if valueIsLargest || alarmsData.count == 0 {
+                        print("APPENDING ALARM")
                         alarmsData.append(alarm)
                     } else {
+                        print("INSERTING ALARM")
                         alarmsData.insert(alarm, at: insertAt)
                     }
                     userSwitchesStatesData.append(true)
@@ -396,6 +399,10 @@ class AlarmTableViewController: UITableViewController {
             vc.editingCell = true
             
             vc.alarmArray = alarmsData
+            
+            vc.userChoseSong = false
+            
+            defaults.set(vc.userChoseSong, forKey: "userChoseSongKey")
 
             
         } else if segue.identifier == "buttonToShowMakeAlarm" {
